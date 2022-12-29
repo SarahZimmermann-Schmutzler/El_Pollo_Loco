@@ -1,0 +1,20 @@
+class Cloud extends MovableObject {
+    y = 10;
+    height = 370;
+    width = 800;
+    // 12: statische Werte werden hier eingepflegt
+
+    constructor() {
+        super().loadImage('img/5_background/layers/4_clouds/1.png');
+
+        this.x = Math.random() * 500;
+
+        this.animate();
+    }
+
+    animate() {
+        this.moveLeft(); //1.5
+    }
+}
+
+//12: Klasse Cloud erstellt
