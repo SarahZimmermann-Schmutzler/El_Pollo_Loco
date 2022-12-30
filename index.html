@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>El Pollo Loco</title>
     <link rel="stylesheet" href="style.css">
+    <script src="main.js"></script>
     <script src="models/drawable-object.class.js"></script>
     <!-- 2.16: muss ganz nach oben, weil es oberste Klasse ist -->
     <script src="models/movable-object.class.js"></script>
@@ -24,9 +26,19 @@
 </head>
 
 <body onload="init()">
-    <h1>El Pollo Loco</h1>
+    <div id="fullscreen" class="game">
+        <h1>El Pollo Loco</h1>
 
-    <canvas width="720px" height="480px" id="canvas"></canvas>
-    
+        <canvas width="720px" height="480px" id="canvas"></canvas>
+
+        <div class="fullscreen-icon">
+            <img src="img/10_other/full.png" onclick="fullscreen()" id="fullscreen-icon" class="">
+        </div>
+
+        <div class="nofullscreen-icon">
+            <img src="img/10_other/nofull.png" onclick="closeFullscreen()" id="nofullscreen-icon" class="d-none">
+        </div>
+    </div>
 </body>
+
 </html>
