@@ -29,7 +29,13 @@
     <div id="fullscreen" class="game">
         <h1>El Pollo Loco</h1>
 
-        <canvas width="720px" height="480px" id="canvas"></canvas>
+        <div class="btn-container" id="btn-container">
+            <button class="startbtn" onclick="startGame()" id="startbtn">Start</button>
+        </div>
+        
+        <div class="startscreen" id="startscreen"></div>
+        
+        <canvas width="720px" height="480px" id="canvas" class="d-none"></canvas>
 
         <div class="fullscreen-icon">
             <img src="img/10_other/full.png" onclick="fullscreen()" id="fullscreen-icon" class="">

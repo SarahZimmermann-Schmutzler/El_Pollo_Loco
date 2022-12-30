@@ -52,12 +52,18 @@ canvas {
     display: block;
 }
 
+.d-none {
+    display: none;
+}
+
+/* Fullscreen */
 .fullscreen-icon {
     display: flex;
     justify-content: flex-end;
     height: 20px;
     width: 720px;
     margin-top: -30px;
+    
 }
 
 .fullscreen-icon img {
@@ -66,15 +72,12 @@ canvas {
     object-fit: contain;
     margin-right: 20px;
     cursor: pointer;
+    z-index: 2;
 }
 
 .fullscreen-icon img:hover {
     height: 20px;
     width: 20px;
-}
-
-.d-none {
-    display: none;
 }
 
 .nofullscreen-icon {
@@ -98,6 +101,7 @@ canvas {
     width: 20px;
 }
 
+/* Caption */
 .explanation {
     width: 720px;
     display: flex;
@@ -126,7 +130,57 @@ canvas {
 }
 
 
+/* Startscreen */
+.startscreen {
+    width: 760px;
+    height: 480px;
+    background-image: url('img/9_intro_outro_screens/start/startscreen_1.png');
+    background-position: 70% 50%;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.btn-container {
+    display: flex;
+    justify-content: flex-end;
+    width: 760px;
+    margin-bottom: -100px;
+    margin-top: 50px;
+    z-index: 2;
+}
+.startbtn {
+    width: 200px;
+    background-color: #FFCB19;
+    font-family: 'Rye';
+    border-radius: 5px;
+    border: none;
+    font-size: 42px;
+    cursor: pointer;
+    animation: glowing 1300ms infinite;
+    margin-right: 30px;
+}
 
+.marginbtn {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+@keyframes glowing {
+    0% {
+      background-color: #FFA000;
+      box-shadow: 0 0 3px #FFA000;
+    }
+    50% {
+      background-color: #FFCB19;
+      box-shadow: 0 0 10px #FFCB19;
+    }
+    100% {
+      background-color: #FFA000;
+      box-shadow: 0 0 3px #FFA000;
+    }
+  }
+
+
+/* Media Queries */
 /* Smartphones */
 @media (max-width: 760px) {
     canvas {
