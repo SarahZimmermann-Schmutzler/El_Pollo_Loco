@@ -74,7 +74,7 @@ class Character extends MovableObject {
             }
             // 1.14: durch && this.x > 0 kann er nicht weiter nach links laufen als bis zur 0
 
-            if (this.world.keyboard.SPACE && !this.isAboveGround()) {
+            if (this.world.keyboard.UP && !this.isAboveGround()) {
                 this.jump();
             }
             // 2.4: wenn Space drücken wird Initialwert der Fallfunktion auf 20 gesetzt --> springen

@@ -12,6 +12,20 @@
        url('fonts/smokum-v24-latin/smokum-v24-latin-regular.svg#Smokum') format('svg'); /* Legacy iOS */
 }
 
+/* rye-regular - latin */
+@font-face {
+    font-family: 'Rye';
+    font-style: normal;
+    font-weight: 400;
+    src: url('fonts/rye-v13-latin/rye-v13-latin-regular.eot'); /* IE9 Compat Modes */
+    src: local(''),
+         url('fonts/rye-v13-latin/rye-v13-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('fonts/rye-v13-latin/rye-v13-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+         url('fonts/rye-v13-latin/rye-v13-latin-regular.woff') format('woff'), /* Modern Browsers */
+         url('fonts/rye-v13-latin/rye-v13-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+         url('fonts/rye-v13-latin/rye-v13-latin-regular.svg#Rye') format('svg'); /* Legacy iOS */
+  }
+
 body {
     margin: 0;
 }
@@ -83,6 +97,35 @@ canvas {
     height: 20px;
     width: 20px;
 }
+
+.explanation {
+    width: 720px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 25px;
+    box-sizing: border-box;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.keys {
+    display: flex;
+    align-items: center;
+}
+
+.keys img {
+    width: 25px;
+    height: 25px;
+    object-fit: contain;
+}
+
+.keys span {
+    font-family: 'Rye';
+    margin-left: 10px;
+}
+
+
 
 /* Smartphones */
 @media (max-width: 760px) {

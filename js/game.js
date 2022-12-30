@@ -30,10 +30,6 @@ window.addEventListener('keydown', (event) => {
     if(event.keyCode == 32) {
         keyboard.SPACE = true;
     }
-
-    if(event.keyCode == 68) {
-        keyboard.D = true;
-    }
     // console.log(event.keyCode);
 });
 // 1.6: wollen herausfinden, ob eine Taste gedrückt wird oder nicht
@@ -59,10 +55,6 @@ window.addEventListener('keyup', (event) => {
 
     if(event.keyCode == 32) {
         keyboard.SPACE = false;
-    }
-
-    if(event.keyCode == 68) {
-        keyboard.D = false;
     }
 });
 // 1.7: brauchen dasgleiche nochmal für die Situation, dass Taste wieder losgelassen wird
