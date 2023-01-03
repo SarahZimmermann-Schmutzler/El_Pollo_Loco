@@ -38,20 +38,3 @@ function fullscreenIconAppear() {
     document.getElementById('nofullscreen-icon').classList.add('d-none');
 }
 
-function startGame() {
-    showGame();
-    playGame();
-}
-
-function showGame() {
-    let startscreen = document.getElementById('startscreen');
-    let btnContainer = document.getElementById('btn-container');
-    let startbtn = document.getElementById('startbtn');
-    let canvas = document.getElementById('canvas');
-
-    startscreen.classList.add('d-none');
-    startbtn.classList.add('d-none');
-    btnContainer.classList.add('marginbtn');
-    canvas.classList.remove('d-none');
-}
-

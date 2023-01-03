@@ -3,7 +3,25 @@ let world;
 let keyboard = new Keyboard();
 //1.6: Verknüpfung Objekt mit Variable, damit wir hier auf das Objekt zugreifen können
 
-function init() {
+function startGame() {
+    showGame();
+    initLevelOne();
+    initGame();
+}
+
+function showGame() {
+    let startscreen = document.getElementById('startscreen');
+    let btnContainer = document.getElementById('btn-container');
+    let startbtn = document.getElementById('startbtn');
+    let canvas = document.getElementById('canvas');
+
+    startscreen.classList.add('d-none');
+    startbtn.classList.add('d-none');
+    btnContainer.classList.add('marginbtn');
+    canvas.classList.remove('d-none');
+}
+
+function initGame() {
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
 

@@ -1,6 +1,6 @@
 let level1;
 
-function playGame() {
+function initLevelOne() {
     level1 = new Level(
         [
             new Chicken(),
