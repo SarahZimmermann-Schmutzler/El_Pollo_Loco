@@ -1,7 +1,13 @@
+let intervalIds = [];
 let canvas;
 let world;
 let keyboard = new Keyboard();
 //1.6: Verknüpfung Objekt mit Variable, damit wir hier auf das Objekt zugreifen können
+
+function setStoppableInterval(fn, time) {
+    let id = setInterval(fn, time);
+    intervalIds.push(id);
+}
 
 function startGame() {
     showGame();
@@ -77,3 +83,7 @@ window.addEventListener('keyup', (event) => {
 });
 // 1.7: brauchen dasgleiche nochmal für die Situation, dass Taste wieder losgelassen wird
 // schaltet dann um von true auf false
+
+function stopGame() {
+    intervalIds.forEach(clearInterval);
+}

@@ -26,13 +26,13 @@ class Chicken extends MovableObject {
     }
 
     animate() {
-        setInterval(() => {
+        setStoppableInterval(() => {
             this.moveLeft(); //1.5
         }, 1000 / 60);
         // 2.5: setzen das setInterval um die moveLeft funktion (vorher generell in moveLeft Funktion)
         
 
-        setInterval(() => {
+        setStoppableInterval(() => {
             this.playAnimation(this.IMAGES_WALKING);
             // 1.16 Funktion ausgelagert in Superklasse
         }, 200);  
