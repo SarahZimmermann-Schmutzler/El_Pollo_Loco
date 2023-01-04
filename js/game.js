@@ -20,11 +20,17 @@ function showGame() {
     let btnContainer = document.getElementById('btn-container');
     let startbtn = document.getElementById('startbtn');
     let canvas = document.getElementById('canvas');
+    let gameover = document.getElementById('gameover');
+    let restartBtnContainer = document.getElementById('btn-container-restart');
+    let restartbtn = document.getElementById('restartbtn');
 
     startscreen.classList.add('d-none');
     startbtn.classList.add('d-none');
     btnContainer.classList.add('marginbtn');
     canvas.classList.remove('d-none');
+    gameover.classList.add('d-none');
+    restartBtnContainer.classList.add('d-none');
+    restartbtn.classList.add('d-none');
 }
 
 function initGame() {

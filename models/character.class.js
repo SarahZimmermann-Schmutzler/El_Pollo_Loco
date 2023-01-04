@@ -40,7 +40,7 @@ class Character extends MovableObject {
     ]; //2.14: weiteres Array mit den Getroffen-Bildern
 
     world; //1.7: gehört zur Verknüpfung World mit Charakter, damit wir die Variable Keyboard benutzen können
-    walking_sound = new Audio('audio/running.mp3'); //1.15
+    walking_sound = new Audio('audio/running1.mp3'); //1.15
 
     constructor() {
         super().loadImage('img/2_character_pepe/2_walk/W-21.png');
@@ -59,7 +59,7 @@ class Character extends MovableObject {
     animate() {
         this.walking_sound.pause(); //1.15: Sound ist angehalten und wird abgespielt, wenn sich Figur bewegt
 
-        setInterval(() => {
+        setStoppableInterval(() => {
             if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
                 this.moveRight();
                 this.otherDirection = false;
@@ -91,9 +91,14 @@ class Character extends MovableObject {
         //1.9: fügen die otherDirection ein
 
 
-        setInterval(() => {
+        setStoppableInterval(() => {
             if(this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
+                document.getElementById('gameover').classList.remove('d-none');
+                document.getElementById('canvas').classList.add('d-none');
+                document.getElementById('btn-container-restart').classList.remove('d-none');
+                document.getElementById('restartbtn').classList.remove('d-none');
+                stopGame()
             }
             // 2.13: wenn wir tot sind, andere Grafiken anzeigen
             else if (this.isHurt()) {

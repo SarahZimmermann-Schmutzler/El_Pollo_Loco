@@ -26,6 +26,33 @@
          url('fonts/rye-v13-latin/rye-v13-latin-regular.svg#Rye') format('svg'); /* Legacy iOS */
   }
 
+  /* roboto-regular - latin */
+@font-face {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    src: url('fonts/roboto-v30-latinroboto-v30-latin-regular.eot'); /* IE9 Compat Modes */
+    src: local(''),
+         url('fonts/roboto-v30-latinroboto-v30-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('fonts/roboto-v30-latinroboto-v30-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+         url('fonts/roboto-v30-latinroboto-v30-latin-regular.woff') format('woff'), /* Modern Browsers */
+         url('fonts/roboto-v30-latinroboto-v30-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+         url('fonts/roboto-v30-latinroboto-v30-latin-regular.svg#Roboto') format('svg'); /* Legacy iOS */
+  }
+  /* roboto-500 - latin */
+  @font-face {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    src: url('fonts/roboto-v30-latinroboto-v30-latin-500.eot'); /* IE9 Compat Modes */
+    src: local(''),
+         url('fonts/roboto-v30-latinroboto-v30-latin-500.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('fonts/roboto-v30-latinroboto-v30-latin-500.woff2') format('woff2'), /* Super Modern Browsers */
+         url('fonts/roboto-v30-latinroboto-v30-latin-500.woff') format('woff'), /* Modern Browsers */
+         url('fonts/roboto-v30-latinroboto-v30-latin-500.ttf') format('truetype'), /* Safari, Android, iOS */
+         url('fonts/roboto-v30-latinroboto-v30-latin-500.svg#Roboto') format('svg'); /* Legacy iOS */
+  }
+
 body {
     margin: 0;
 }
@@ -41,8 +68,8 @@ body {
 }
 
 h1 {
-    font-family: 'Smokum';
-    font-size: 50px;
+    font-family: 'Rye';
+    font-size: 46px;
     letter-spacing: 3px;
     text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
 }
@@ -53,7 +80,7 @@ canvas {
 }
 
 .d-none {
-    display: none;
+    display: none !important;
 }
 
 /* Fullscreen */
@@ -139,6 +166,7 @@ canvas {
     background-size: cover;
     background-repeat: no-repeat;
 }
+
 .btn-container {
     display: flex;
     justify-content: flex-end;
@@ -178,6 +206,35 @@ canvas {
       box-shadow: 0 0 3px #FFA000;
     }
   }
+
+  .gameover {
+    width: 760px;
+    height: 480px;
+    background-image: url('img/9_intro_outro_screens/game_over/gameover.png');
+    background-position: 50% 50%;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  .btn-container-restart {
+    display: flex;
+    justify-content: flex-end;
+    width: 760px;
+    margin-bottom: -80px;
+    margin-top: 50px;
+    z-index: 2;
+}
+.restartbtn {
+    width: 200px;
+    background-color: #FFCB19;
+    font-family: 'Rye';
+    border-radius: 5px;
+    border: none;
+    font-size: 35px;
+    cursor: pointer;
+    animation: glowing 1300ms infinite;
+    margin-right: 30px;
+}
 
 
 /* Media Queries */
