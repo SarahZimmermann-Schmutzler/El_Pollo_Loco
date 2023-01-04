@@ -41,6 +41,12 @@ class Character extends MovableObject {
 
     world; //1.7: gehört zur Verknüpfung World mit Charakter, damit wir die Variable Keyboard benutzen können
     walking_sound = new Audio('audio/running1.mp3'); //1.15
+    offset = {
+        top: 120,
+        bottom: 30,
+        left: 40,
+        right: 30 
+    }
 
     constructor() {
         super().loadImage('img/2_character_pepe/2_walk/W-21.png');

@@ -5,6 +5,7 @@ class MovableObject extends DrawableObject {
     acceleration = 2.5; //2.2: Wie schnell Objekte beschleunigt werden
     energy = 100; //2.12
     lastHit = 0; //2.14: brauchen wir für die Hurt Animation
+    
 
     // isColliding(obj) {
     //     return (this.X + this.width) >= obj.X && this.X <= (obj.X + obj.width) &&
@@ -16,13 +17,20 @@ class MovableObject extends DrawableObject {
     // }
     // 2.10: von Junus hergeleitete Kollisionsformel
 
-    isColliding(mo) {
-        return this.x + this.width > mo.x &&
-            this.y + this.height > mo.y &&
-            this.x < mo.x &&
-            this.y < mo.y + mo.height
-    }
+    // isColliding(mo) {
+    //     return this.x + this.width > mo.x &&
+    //         this.y + this.height > mo.y &&
+    //         this.x < mo.x &&
+    //         this.y < mo.y + mo.height
+    // }
     // 2.11. ursprüngliche Kollissionsformel --> bei der anderen funktioniert log statement nicht
+
+    isColliding(mo) {
+        return this.x + this.width - this.offset.right > mo.x + mo.offset.left &&
+            this.y + this.height - this.offset.bottom > mo.y + mo.offset.top &&
+            this.x + this.offset.left < mo.x + mo.width - mo.offset.right &&
+            this.y + this.offset.top < mo.y + mo.height - mo.offset.bottom
+    }
 
     playAnimation(images) {
         let i = this.currentImage % images.length;
@@ -43,7 +51,7 @@ class MovableObject extends DrawableObject {
     //2.5: nehmen das setInterval heraus und setzen es bei den Hühnchen dahin wo Funktion aufgerufen wird
 
     applyGravity() {
-        setInterval(() => {
+        setStoppableInterval(() => {
             if (this.isAboveGround() || this.speedY > 0) {
                 // 2.2: damit er nicht ins Bodenlose fällt, sondern bei 140 stehen bleibt
                 // 2.4: damit Funktion auch fürs Springen (speedY z.B.20) ausgeführt wird
