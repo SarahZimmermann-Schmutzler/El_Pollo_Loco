@@ -99,7 +99,7 @@ canvas {
     object-fit: contain;
     margin-right: 20px;
     cursor: pointer;
-    z-index: 2;
+    /* z-index: 2; */
 }
 
 .fullscreen-icon img:hover {
@@ -112,10 +112,24 @@ canvas {
     justify-content: flex-end;
     height: 20px;
     width: 720px;
-    margin-top: -25px;
+    margin-top: -30px;
 }
 
 .nofullscreen-icon img {
+    height: 18px;
+    width: 18px;
+    object-fit: contain;
+    margin-right: 55px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.nofullscreen-icon img:hover {
+    height: 20px;
+    width: 20px;
+}
+
+.speaker {
     height: 18px;
     width: 18px;
     object-fit: contain;
@@ -123,7 +137,7 @@ canvas {
     cursor: pointer;
 }
 
-.nofullscreen-icon img:hover {
+.speaker:hover {
     height: 20px;
     width: 20px;
 }

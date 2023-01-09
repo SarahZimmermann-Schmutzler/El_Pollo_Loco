@@ -25,7 +25,7 @@
     <script src="js/game.js"></script>
 </head>
 
-<body onload="welcomeMusic()">
+<body>
     <div id="fullscreen" class="game">
         <h1>El Pollo Loco</h1>
 
@@ -44,12 +44,19 @@
         <canvas width="720px" height="480px" id="canvas" class="d-none"></canvas>
 
         <div class="fullscreen-icon">
-            <img src="img/10_other/full.png" onclick="fullscreen()" id="fullscreen-icon" class="">
-        </div>
+            <img src="img/10_other/mute.png" onclick="welcomeMusic()" id="mute" class="speaker">
+            <img src="img/10_other/speaker.png" onclick="stopWelcomeMusic()" id="speaker" class="d-none speaker">
+            <img src="img/10_other/mute.png" onclick="playSounds()" id="mute-game" class="speaker d-none">
+            <img src="img/10_other/speaker.png" onclick="muteSounds()" id="speaker-game" class="d-none speaker">
 
-        <div class="nofullscreen-icon">
+            <img src="img/10_other/full.png" onclick="fullscreen()" id="fullscreen-icon" class="">
             <img src="img/10_other/nofull.png" onclick="closeFullscreen()" id="nofullscreen-icon" class="d-none">
         </div>
+
+        <!-- <div class="nofullscreen-icon">
+            <img src="img/10_other/nofull.png" onclick="closeFullscreen()" id="nofullscreen-icon" class="d-none">
+            <img src="img/10_other/speaker.png" onclick="stopWelcomeMusic()" id="speaker" class="d-none speaker">
+        </div> -->
 
         <div class="explanation">
             <div class="keys">

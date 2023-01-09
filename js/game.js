@@ -11,11 +11,58 @@ function setStoppableInterval(fn, time) {
 }
 
 function welcomeMusic() {
-    this.welcome_sound.play();
+    setStoppableInterval(() => {
+        this.welcome_sound.play();
+    }, 1000 / 60);
+
+    showSpeakerSymbol();
+}
+
+function showSpeakerSymbol() {
+    document.getElementById('mute').classList.add('d-none');
+    document.getElementById('speaker').classList.remove('d-none');
+}
+
+function showMuteSymbol() {
+    document.getElementById('mute').classList.remove('d-none');
+    document.getElementById('speaker').classList.add('d-none');
+}
+
+function stopWelcomeMusic() {
+    this.welcome_sound.pause();
+    intervalIds.forEach(clearInterval);
+
+    showMuteSymbol();
+}
+
+function resetSpeakerSymbol() {
+    document.getElementById('mute').classList.add('d-none');
+    document.getElementById('speaker').classList.add('d-none');
+    document.getElementById('speaker-game').classList.remove('d-none');
+}
+
+function muteSounds() {
+    document.getElementById('speaker-game').classList.add('d-none');
+    document.getElementById('mute-game').classList.remove('d-none');
+    intervalIds.forEach(clearInterval);
+    this.walking_sound.pause();
+    this.hit_sound.pause();
+    this.dead_sound.pause();
+     
+}
+
+function playSounds() {
+    document.getElementById('speaker-game').classList.remove('d-none');
+    document.getElementById('mute-game').classList.add('d-none');
+    this.walking_sound.pause();
+    this.hit_sound.pause();
+    this.dead_sound.pause(); 
 }
 
 function startGame() {
     showGame();
+    stopWelcomeMusic();
+    resetSpeakerSymbol();
     initLevelOne();
     initGame();
 }

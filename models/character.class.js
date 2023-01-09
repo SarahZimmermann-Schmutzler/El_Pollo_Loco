@@ -41,6 +41,8 @@ class Character extends MovableObject {
 
     world; //1.7: gehört zur Verknüpfung World mit Charakter, damit wir die Variable Keyboard benutzen können
     walking_sound = new Audio('audio/running1.mp3'); //1.15
+    hit_sound = new Audio('audio/pepehit1.mp3');
+    dead_sound = new Audio('audio/pepedead.mp3');
     offset = {
         top: 120,
         bottom: 30,
@@ -100,6 +102,7 @@ class Character extends MovableObject {
         setStoppableInterval(() => {
             if(this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
+                // this.dead_sound.play();
                 document.getElementById('gameover').classList.remove('d-none');
                 document.getElementById('canvas').classList.add('d-none');
                 document.getElementById('btn-container-restart').classList.remove('d-none');
@@ -109,6 +112,7 @@ class Character extends MovableObject {
             // 2.13: wenn wir tot sind, andere Grafiken anzeigen
             else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
+                this.hit_sound.play();
             } //2.14: wenn ich verletzt bin, das abspielen
             else if (this.isAboveGround()) {
                 this.playAnimation(this.IMAGES_JUMPING);
