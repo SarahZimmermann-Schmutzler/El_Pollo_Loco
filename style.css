@@ -244,7 +244,27 @@ canvas {
         width: 100%;
     }
 
+    .startscreen {
+        width: 100%;
+    }
+
+    .btn-container {
+        justify-content: center;
+    }
+
+    .nofullscreen-icon {
+        display: none;
+    }
+
+    .fullscreen-icon {
+        display: none;
+    }
+
     h1 {
+        display: none;
+    }
+
+    .explanation {
         display: none;
     }
 
@@ -259,9 +279,26 @@ canvas {
         height: 100vh;
     }
 
+    .startscreen {
+        height: 100vh;
+    }
+
     h1 {
         display: none;
     }
+
+    .nofullscreen-icon {
+        display: none;
+    }
+
+    .fullscreen-icon {
+        display: none;
+    }
+
+    .explanation {
+        display: none;
+    }
+
 
     .fullscreen {
         display: none;
