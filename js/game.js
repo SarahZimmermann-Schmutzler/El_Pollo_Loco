@@ -3,10 +3,15 @@ let canvas;
 let world;
 let keyboard = new Keyboard();
 //1.6: Verknüpfung Objekt mit Variable, damit wir hier auf das Objekt zugreifen können
+welcome_sound = new Audio('audio/intro.mp3', loop='loop');
 
 function setStoppableInterval(fn, time) {
     let id = setInterval(fn, time);
     intervalIds.push(id);
+}
+
+function welcomeMusic() {
+    this.welcome_sound.play();
 }
 
 function startGame() {
