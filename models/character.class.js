@@ -119,12 +119,6 @@ class Character extends MovableObject {
                 // 2.3: wenn er über der Erde schwebt sollen die Jumping-Bilder animiert/abgespielt werden
             } else {
                 if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
-                    // let i = this.currentImage % this.IMAGES_WALKING.length;
-                    // let i = 0 modulu/Mathematischer Rest 6 --> i = 0, 1, 2, 3, 4, 5, 0
-                    // let path = this.IMAGES_WALKING[i];
-                    // this.img = this.imageCache[path];
-                    // this.currentImage++;
-                    // 1.16: lagern in Funktion aus, die zur Superklasse kommt
                     this.playAnimation(this.IMAGES_WALKING);
                 }
             }

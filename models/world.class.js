@@ -8,6 +8,7 @@ class World {
     statusBar = new Statusbar(); //2.18.
     throwableObjects = []; //2.20
 
+
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
         // 09: mit der Variable Context kann man die Canvas bearbeiten
@@ -33,10 +34,11 @@ class World {
         // SPACE FOR FIXED OBJECTS
         this.addToMap(this.statusBar); //2.18.
         this.ctx.translate(this.camera_x, 0); //2.19: schieben Bildausschnitt wieder vor
-
+        this.addObjectsToMap(this.level.collectableObjects);
         this.addToMap(this.character);
         
         this.addObjectsToMap(this.level.enemies);
+        
         this.addObjectsToMap(this.throwableObjects);
         // 15: Reihenfolge des Einfügens enscheidet über Reihenfolge der Objekte auf der Canvas
         // daher Hintergrundobjekte zuerst

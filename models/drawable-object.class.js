@@ -57,5 +57,4 @@ class DrawableObject {
     }
     // 2.7: Rahmen um Objekte machen, damit man später Kollision erkennen kann
     // 2.9: mit instanceof die Funktion nur für Character und Chicken anwenden
-
 }

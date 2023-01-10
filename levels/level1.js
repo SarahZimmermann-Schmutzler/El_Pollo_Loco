@@ -36,6 +36,25 @@ function initLevelOne() {
             new BackgroundObject('img/5_background/layers/3_third_layer/2.png', 719 * 3),
             new BackgroundObject('img/5_background/layers/2_second_layer/2.png', 719 * 3),
             new BackgroundObject('img/5_background/layers/1_first_layer/2.png', 719 * 3)
+        ],
+        [
+            new Coin(),
+            new Coin(),
+            new Coin(),
+            new Coin(),
+            new Coin(),
+            new Coin(),
+            new Coin(),
+            new Coin(),
+            new Bottle(),
+            new Bottle(),
+            new Bottle(),
+            new Bottle(),
+            new Bottle(),
+            new Bottle(),
+            new Bottle(),
+            new Bottle(),
+            new Bottle()
         ]
     );
 }
