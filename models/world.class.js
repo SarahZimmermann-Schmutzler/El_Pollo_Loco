@@ -5,7 +5,9 @@ class World {
     ctx;//09
     keyboard;//1.7
     camera_x = 0; //1.11
-    statusBar = new Statusbar(); //2.18.
+    statusbarHealth = new StatusbarHealth(); //2.18.
+    statusbarCoins = new StatusbarCoins();
+    statusbarBottles = new StatusbarBottles();
     throwableObjects = []; //2.20
 
 
@@ -32,7 +34,9 @@ class World {
 
         this.ctx.translate(-this.camera_x, 0); //2.19: schieben Bildausschnitt zurück
         // SPACE FOR FIXED OBJECTS
-        this.addToMap(this.statusBar); //2.18.
+        this.addToMap(this.statusbarHealth); //2.18.
+        this.addToMap(this.statusbarCoins);
+        this.addToMap(this.statusbarBottles);
         this.ctx.translate(this.camera_x, 0); //2.19: schieben Bildausschnitt wieder vor
         this.addObjectsToMap(this.level.collectableObjects);
         this.addToMap(this.character);
@@ -114,7 +118,7 @@ class World {
             if (this.character.isColliding(enemy)) {
                 // console.log('Collision with Character', enemy);
                 this.character.hit();
-                this.statusBar.setPercentage(this.character.energy); //2.19: Prozentzahl die Statusbar einnehmen soll (Bild dass gezeigt werden soll) an Energiestand gekoppelt
+                this.statusbarHealth.setPercentage(this.character.energy); //2.19: Prozentzahl die Statusbar einnehmen soll (Bild dass gezeigt werden soll) an Energiestand gekoppelt
             }
         });
     }

@@ -1,23 +1,7 @@
 class Statusbar extends DrawableObject{
-    IMAGES = [
-        'img/7_statusbars/1_statusbar/2_statusbar_health/green/0.png', //0
-        'img/7_statusbars/1_statusbar/2_statusbar_health/green/20.png',
-        'img/7_statusbars/1_statusbar/2_statusbar_health/green/40.png',
-        'img/7_statusbars/1_statusbar/2_statusbar_health/green/60.png',
-        'img/7_statusbars/1_statusbar/2_statusbar_health/green/80.png',
-        'img/7_statusbars/1_statusbar/2_statusbar_health/green/100.png' //5
-    ];
-    percentage = 100;
-
-    constructor() {
-        super();
-        this.loadImages(this.IMAGES);
-        this.x = 30;
-        this.y = 0;
-        this.height = 60;
-        this.width = 200;
-        this.setPercentage(100); //2.18. setzen Statusbar zuerst auf 100
-    }
+    height = 60;
+    width = 200;
+    percentage = 0;
 
     setPercentage(percentage) {
         this.percentage = percentage;
@@ -43,4 +27,3 @@ class Statusbar extends DrawableObject{
     }
     // 2.17: return 5 steht für das 5. Objekt im Array (= 5.Bild, von 0 angefangen zu zählen)
 }
-// 2.17: hier erstellt
