@@ -38,11 +38,12 @@ class World {
         this.addToMap(this.statusbarCoins);
         this.addToMap(this.statusbarBottles);
         this.ctx.translate(this.camera_x, 0); //2.19: schieben Bildausschnitt wieder vor
-        this.addObjectsToMap(this.level.collectableObjects);
+        this.addObjectsToMap(this.level.coins);
+        this.addObjectsToMap(this.level.bottles);
         this.addToMap(this.character);
-        
+
         this.addObjectsToMap(this.level.enemies);
-        
+
         this.addObjectsToMap(this.throwableObjects);
         // 15: Reihenfolge des Einfügens enscheidet über Reihenfolge der Objekte auf der Canvas
         // daher Hintergrundobjekte zuerst
@@ -111,9 +112,18 @@ class World {
             this.checkThrowObjects();
         }, 200);
     }
-    
+
 
     checkCollisions() {
+        this.checkCollisionsEnemies();
+        this.checkCollisionsCoins();
+        this.checkCollisionsBottles();
+    }
+    //2.11: checkt Kollsiionen ab --> isColliding steht bei movabale Objects  
+    // 2.12: wenn es kollidiert, zieht es Punkt von der Energy ab
+    // 2.13: Funktion ausgelagetr zu movableObjects
+
+    checkCollisionsEnemies() {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy)) {
                 // console.log('Collision with Character', enemy);
@@ -122,9 +132,26 @@ class World {
             }
         });
     }
-    //2.11: checkt Kollsiionen ab --> isColliding steht bei movabale Objects  
-    // 2.12: wenn es kollidiert, zieht es Punkt von der Energy ab
-    // 2.13: Funktion ausgelagetr zu movableObjects
+
+    checkCollisionsCoins() {
+        this.level.coins.forEach((coin) => {
+            if (this.character.isColliding(coin)) {
+                console.log('Collision with Character', coin);
+                this.character.collectCoins();
+                this.statusbarCoins.setPercentage(this.character.coins)
+            }
+        });
+    }
+
+    checkCollisionsBottles() {
+        this.level.bottles.forEach((bottle) => {
+            if (this.character.isColliding(bottle)) {
+                console.log('Collision with Character', bottle);
+                this.character.collectBottles();
+                this.statusbarBottles.setPercentage(this.character.bottles)
+            }
+        });
+    }
 
     checkThrowObjects() {
         if (this.keyboard.SPACE) {

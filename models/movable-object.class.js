@@ -5,6 +5,10 @@ class MovableObject extends DrawableObject {
     acceleration = 2.5; //2.2: Wie schnell Objekte beschleunigt werden
     energy = 100; //2.12
     lastHit = 0; //2.14: brauchen wir für die Hurt Animation
+    coins = 0;
+    bottles = 0;
+    coin_sound = new Audio('audio/coin.mp3');
+    bottle_sound = new Audio('audio/bottle.mp3');
     
 
     // isColliding(obj) {
@@ -16,14 +20,6 @@ class MovableObject extends DrawableObject {
     //     // Nur dann kollidieren wir. Nützlich bei Gegenständen, auf denen man stehen kann.
     // }
     // 2.10: von Junus hergeleitete Kollisionsformel
-
-    // isColliding(mo) {
-    //     return this.x + this.width > mo.x &&
-    //         this.y + this.height > mo.y &&
-    //         this.x < mo.x &&
-    //         this.y < mo.y + mo.height
-    // }
-    // 2.11. ursprüngliche Kollissionsformel --> bei der anderen funktioniert log statement nicht
 
     isColliding(mo) {
         return this.x + this.width - this.offset.right > mo.x + mo.offset.left &&
@@ -77,6 +73,24 @@ class MovableObject extends DrawableObject {
     jump() {
         this.speedY = 30;
         // 2.6: je höher die Zahl, desto höher springt er
+    }
+
+    collectBottles() {
+        this.bottles += 20;
+        this.bottle_sound.play();
+        console.log('Collision with Character, bottles', this.bottles);
+        if(this.bottles > 100 ) {
+            this.bottles = 100;
+        }
+    }
+
+    collectCoins() {
+        this.coins += 20;
+        this.coin_sound.play();
+        console.log('Collision with Character, coins', this.coins);
+        if(this.coins > 100 ) {
+            this.coins = 100;
+        }
     }
 
     hit() {
