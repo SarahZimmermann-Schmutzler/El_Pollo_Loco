@@ -153,13 +153,43 @@ class World {
             }
         });
     }
+    
 
     collectingCoins(index) {
-        if (this.character.coins < 100) {
+        if (this.statusbarCoinsIsEmpty()) {
             this.level.coins.splice(index, 1);
             this.character.collectCoins();
             this.statusbarCoins.setPercentage(this.character.coins);
-        } 
+        }
+
+        if (this.statusbarCoinsIsFull()) {
+            this.increaseStatusbarHealth();
+            this.emptyStatusbarCoins();
+        }
+    }
+
+
+    statusbarCoinsIsEmpty() {
+        return this.character.coins < 100;
+    }
+
+
+    increaseStatusbarHealth() {
+        if (this.character.energy < 100) {
+            this.character.energy += 15;
+        }
+        this.statusbarHealth.setPercentage(this.character.energy);
+    }
+
+
+    emptyStatusbarCoins() {
+        this.character.coins -= 100;
+        this.statusbarCoins.setPercentage(this.character.coins);
+    }
+
+
+    statusbarCoinsIsFull() {
+        return this.character.coins == 100;
     }
 
 
@@ -189,6 +219,7 @@ class World {
             this.throwBottle();
         }
     }
+
 
     throwBottle() {
         this.character.bottles -= 20;

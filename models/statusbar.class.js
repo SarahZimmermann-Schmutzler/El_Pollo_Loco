@@ -11,7 +11,7 @@ class Statusbar extends DrawableObject{
     // 2.17: können dann z.B. Funktion aufrufen mit setPercentage(50);
 
     resolveImageIndex() {
-        if (this.percentage == 100) {
+        if (this.percentage >= 100) {
             return 5;
         } else if (this.percentage > 80) {
             return 4;
