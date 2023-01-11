@@ -60,7 +60,3 @@ function initLevelOne() {
         ]
     );
 }
-
-
-
-// 1.13: Werte für enemies, clouds und background-Objects in level 1

@@ -21,6 +21,7 @@ class World {
         this.run(); //2.11
     }
 
+
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         // 10: canvas muss immer gelöscht werden, bevor wir zeichnen, damit z.B. Character nicht an mehreren Stellen auftaucht
@@ -59,12 +60,14 @@ class World {
 
     }
 
+
     // 13: wir lagern den Code in folgende 2 Funktionen aus
     addObjectsToMap(objects) {
         objects.forEach(o => {
             this.addToMap(o);
         });
     }
+
 
     addToMap(mo) {
         //1.9: für die Spiegelung
@@ -81,10 +84,12 @@ class World {
         }
     }
 
+
     setWorld() {
         this.character.world = this;
     }
     // 1.7: verknüpfen den charakter mit world, damit wir auf die hier definierte Variable keyboard zugreifen können
+
 
     flipImage(mo) {
         // schauen, ob otherDirection true ist
@@ -98,6 +103,7 @@ class World {
         // spiegeln die X-Koordinate des Elements, da es bei Spiegeln das Koordinatensystem umdreht
     }
 
+
     flipImageBack(mo) {
         // schauen, ob wir oben Kontext verändert haben und wenn ja
         mo.x = mo.x * -1;
@@ -106,11 +112,15 @@ class World {
         // machen Änderungen rückgängig, da anderen Elemente ja vorwärts eingefügt werden sollen
     }
 
+
     run() {
         setStoppableInterval(() => {
-            this.checkCollisions();
             this.checkThrowObjects();
-        }, 200);
+        }, 100);
+
+        setStoppableInterval(() => {
+            this.checkCollisions();
+        }, 400);
     }
 
 
@@ -123,6 +133,7 @@ class World {
     // 2.12: wenn es kollidiert, zieht es Punkt von der Energy ab
     // 2.13: Funktion ausgelagetr zu movableObjects
 
+
     checkCollisionsEnemies() {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy)) {
@@ -133,31 +144,56 @@ class World {
         });
     }
 
+
     checkCollisionsCoins() {
-        this.level.coins.forEach((coin) => {
+        this.level.coins.forEach((coin, index) => {
             if (this.character.isColliding(coin)) {
                 console.log('Collision with Character', coin);
-                this.character.collectCoins();
-                this.statusbarCoins.setPercentage(this.character.coins)
+                this.collectingCoins(index);
             }
         });
     }
+
+    collectingCoins(index) {
+        if (this.character.coins < 100) {
+            this.level.coins.splice(index, 1);
+            this.character.collectCoins();
+            this.statusbarCoins.setPercentage(this.character.coins);
+        } 
+    }
+
 
     checkCollisionsBottles() {
-        this.level.bottles.forEach((bottle) => {
+        this.level.bottles.forEach((bottle, index) => {
             if (this.character.isColliding(bottle)) {
-                console.log('Collision with Character', bottle);
-                this.character.collectBottles();
-                this.statusbarBottles.setPercentage(this.character.bottles)
+                console.log('Collision with Character', bottle, index);
+                this.collectingBottles(index);
             }
         });
     }
 
+
+    collectingBottles(index) {
+        if (this.character.bottles < 100) {
+            this.level.bottles.splice(index, 1);
+            this.character.collectBottles();
+            this.statusbarBottles.setPercentage(this.character.bottles);
+        }
+    }
+
+
     checkThrowObjects() {
-        if (this.keyboard.SPACE) {
+        if (this.keyboard.SPACE && this.character.bottles > 0) {
             let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
             this.throwableObjects.push(bottle);
+            this.throwBottle();
         }
+    }
+
+    throwBottle() {
+        this.character.bottles -= 20;
+        console.log('Collision with Character, bottles', this.character.bottles);
+        this.statusbarBottles.setPercentage(this.character.bottles);
     }
 }
 

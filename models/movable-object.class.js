@@ -21,12 +21,14 @@ class MovableObject extends DrawableObject {
     // }
     // 2.10: von Junus hergeleitete Kollisionsformel
 
+
     isColliding(mo) {
         return this.x + this.width - this.offset.right > mo.x + mo.offset.left &&
             this.y + this.height - this.offset.bottom > mo.y + mo.offset.top &&
             this.x + this.offset.left < mo.x + mo.width - mo.offset.right &&
             this.y + this.offset.top < mo.y + mo.height - mo.offset.bottom
     }
+
 
     playAnimation(images) {
         let i = this.currentImage % images.length;
@@ -36,15 +38,18 @@ class MovableObject extends DrawableObject {
         this.currentImage++;
     }
 
+
     moveRight() {
         this.x += this.speed;
     }
+
 
     moveLeft() {
         this.x -= this.speed;
     }
     //1.5: machen so die eigentliche Wolkenanimation für alle movableObjects zugänglich
     //2.5: nehmen das setInterval heraus und setzen es bei den Hühnchen dahin wo Funktion aufgerufen wird
+
 
     applyGravity() {
         setStoppableInterval(() => {
@@ -60,6 +65,7 @@ class MovableObject extends DrawableObject {
     }
     //2.2: Graviditätsfunktion fürs Fallen
 
+
     isAboveGround() {
         if (this instanceof ThrowableObject) {
             return true;
@@ -70,10 +76,12 @@ class MovableObject extends DrawableObject {
     // 2.2: soll angeben, ob Objekt auf dem Boden steht
     // 2.20: Flaschen sollen immer weiter nach unten fallen
 
+
     jump() {
         this.speedY = 30;
         // 2.6: je höher die Zahl, desto höher springt er
     }
+
 
     collectBottles() {
         this.bottles += 20;
@@ -82,7 +90,9 @@ class MovableObject extends DrawableObject {
         if(this.bottles > 100 ) {
             this.bottles = 100;
         }
+       
     }
+
 
     collectCoins() {
         this.coins += 20;
@@ -92,6 +102,7 @@ class MovableObject extends DrawableObject {
             this.coins = 100;
         }
     }
+
 
     hit() {
         this.energy -= 2;
@@ -103,12 +114,13 @@ class MovableObject extends DrawableObject {
         }
         // 2.14: speichern Zeitpunkt des letzten Treffers
     }
-    // 2.13: lagern Funktion aus + und sagen, dass Wert nicht unter 0 sinken soll
+
 
     isDead() {
         return this.energy == 0;
     }
     // 2.13: ist Energy 0, dann gibt uns diese Funktion den Wert 0 aus --> returned true
+
 
     isHurt() {
         let timepassed =  new Date().getTime() - this.lastHit;
