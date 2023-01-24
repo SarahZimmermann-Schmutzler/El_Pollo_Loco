@@ -8,6 +8,7 @@ class World {
     statusbarHealth = new StatusbarHealth(); //2.18.
     statusbarCoins = new StatusbarCoins();
     statusbarBottles = new StatusbarBottles();
+    statusbarEndboss = new StatusbarEndboss();
     throwableObjects = []; //2.20
     endboss = new Endboss();
 
@@ -39,7 +40,13 @@ class World {
         this.addToMap(this.statusbarHealth); //2.18.
         this.addToMap(this.statusbarCoins);
         this.addToMap(this.statusbarBottles);
+        if(this.character.x > 1400) {
+            this.addToMap(this.statusbarEndboss);
+        }
+        
+        
         this.ctx.translate(this.camera_x, 0); //2.19: schieben Bildausschnitt wieder vor
+        
         this.addObjectsToMap(this.level.coins);
         this.addObjectsToMap(this.level.bottles);
         this.addToMap(this.character);
@@ -121,6 +128,10 @@ class World {
         setStoppableInterval(() => {
             this.checkCollisions();
         }, 400);
+
+        setStoppableInterval(() => {
+            this.checkCollisionsThrownBottles();
+        }, 800);
     }
 
 
@@ -129,7 +140,6 @@ class World {
         this.checkJumpOnEnemies();
         this.checkCollisionsCoins();
         this.checkCollisionsBottles();
-        this.checkCollisionsThrownBottles();
     }
     //2.11: checkt Kollsiionen ab --> isColliding steht bei movabale Objects  
     // 2.12: wenn es kollidiert, zieht es Punkt von der Energy ab
@@ -164,9 +174,11 @@ class World {
 
 
     checkCollisionsThrownBottles() {
-        this.throwableObjects.forEach((bottle, index) => {
+        this.throwableObjects.forEach((bottle) => {
             if (this.endboss.isColliding(bottle)) {
                 console.log('Enemie is hit', bottle);
+                this.endboss.hitWithBottle();
+                this.statusbarEndboss.setPercentage(this.endboss.energy);
             }
         });
     }

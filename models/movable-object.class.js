@@ -104,6 +104,15 @@ class MovableObject extends DrawableObject {
     }
 
 
+    hitWithBottle() {
+        this.energy -= 35;
+        console.log('Collision with Bottle, energy', this.energy);
+        if(this.energy < 0 ) {
+            this.energy = 0;
+        }
+    }
+
+
     hit() {
         this.energy -= 2;
         console.log('Collision with Character, energy', this.energy);
