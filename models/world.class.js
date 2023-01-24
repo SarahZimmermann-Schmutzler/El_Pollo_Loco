@@ -9,6 +9,7 @@ class World {
     statusbarCoins = new StatusbarCoins();
     statusbarBottles = new StatusbarBottles();
     throwableObjects = []; //2.20
+    endboss = new Endboss();
 
 
     constructor(canvas, keyboard) {
@@ -42,6 +43,7 @@ class World {
         this.addObjectsToMap(this.level.coins);
         this.addObjectsToMap(this.level.bottles);
         this.addToMap(this.character);
+        this.addToMap(this.endboss);
 
         this.addObjectsToMap(this.level.enemies);
 
@@ -74,10 +76,8 @@ class World {
         if (mo.otherDirection) {
             this.flipImage(mo);
         }
-
         mo.draw(this.ctx);
         mo.drawBorder(this.ctx);
-
         //1.9: Rückgängimachen Spiegelung für die anderen Elemente
         if (mo.otherDirection) {
             this.flipImageBack(mo);
@@ -126,8 +126,10 @@ class World {
 
     checkCollisions() {
         this.checkCollisionsEnemies();
+        this.checkJumpOnEnemies();
         this.checkCollisionsCoins();
         this.checkCollisionsBottles();
+        this.checkCollisionsThrownBottles();
     }
     //2.11: checkt Kollsiionen ab --> isColliding steht bei movabale Objects  
     // 2.12: wenn es kollidiert, zieht es Punkt von der Energy ab
@@ -140,6 +142,31 @@ class World {
                 // console.log('Collision with Character', enemy);
                 this.character.hit();
                 this.statusbarHealth.setPercentage(this.character.energy); //2.19: Prozentzahl die Statusbar einnehmen soll (Bild dass gezeigt werden soll) an Energiestand gekoppelt
+            }
+        });
+    }
+
+
+    checkJumpOnEnemies() {
+        this.level.enemies.forEach((enemy, index) => {
+            if (this.character.isColliding(enemy) &&
+            this.character.isAboveGround()) {
+                console.log('Character jumps on', enemy);
+                this.killEnemie(index);
+            }
+        });
+    }
+
+
+    killEnemie(index) {
+        this.level.enemies.splice(index, 1);
+    }
+
+
+    checkCollisionsThrownBottles() {
+        this.throwableObjects.forEach((bottle, index) => {
+            if (this.endboss.isColliding(bottle)) {
+                console.log('Enemie is hit', bottle);
             }
         });
     }

@@ -5,8 +5,8 @@ function initLevelOne() {
         [
             new Chicken(),
             new Chicken(),
-            new Chicken(),
-            new Endboss() //1.16
+            new Chicken()
+            // new Endboss()
         ],
         [
             new Cloud()
