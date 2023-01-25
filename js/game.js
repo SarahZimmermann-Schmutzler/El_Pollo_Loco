@@ -50,12 +50,13 @@ function resetSpeakerSymbol() {
 function muteSounds() {
     document.getElementById('speaker-game').classList.add('d-none');
     document.getElementById('mute-game').classList.remove('d-none');
-    this.walking_sound.muted = true;
-    this.walking_sound.pause();
-    this.hit_sound.muted = true;
-    this.hit_sound.pause();
-    this.dead_sound.muted = true;
-    this.dead_sound.pause();
+    this.walking_sound.muted;
+    // this.walking_sound.muted = true;
+    // this.walking_sound.pause();
+    // this.hit_sound.muted = true;
+    // this.hit_sound.pause();
+    // this.dead_sound.muted = true;
+    // this.dead_sound.pause();
 }
 
 

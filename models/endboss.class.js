@@ -31,7 +31,7 @@ class Endboss extends MovableObject {
 
     animate() {
         setStoppableInterval(() => {
-            if(this.world.character.x > 1400) {
+            if(world.character.x > 1400) {
                 this.moveLeft();
             }
         }, 1000 / 60);
@@ -55,5 +55,3 @@ class Endboss extends MovableObject {
         document.getElementById('restartbtn').classList.remove('d-none');
     }
 }
-// 1.16
-//
