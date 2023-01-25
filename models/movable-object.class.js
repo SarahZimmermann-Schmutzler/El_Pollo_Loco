@@ -9,6 +9,8 @@ class MovableObject extends DrawableObject {
     bottles = 0;
     coin_sound = new Audio('audio/coin.mp3');
     bottle_sound = new Audio('audio/bottle.mp3');
+    enemie_sound = new Audio('audio/enemiehit.mp3');
+    
     
 
     // isColliding(obj) {
@@ -106,6 +108,7 @@ class MovableObject extends DrawableObject {
 
     hitWithBottle() {
         this.energy -= 35;
+        this.enemie_sound.play();
         console.log('Collision with Bottle, energy', this.energy);
         if(this.energy < 0 ) {
             this.energy = 0;
@@ -138,4 +141,6 @@ class MovableObject extends DrawableObject {
         return timepassed < 1; // 2.14: wurden innerhalb der letzten Sekunde getroffen --> wird 1 Sek abgespielt
     }
     // 2.14: returned true, wenn wir innerhalb der letzten Sekunde getroffen wurden
+
+    
 }

@@ -38,23 +38,15 @@ class DrawableObject {
         });
     }
 
-    drawBorder(ctx) {
-        if (this instanceof Character || this instanceof Chicken || this instanceof CollectableObject) {
-            ctx.beginPath();
-            ctx.lineWidth = '5';
-            ctx.strokeStyle = 'blue';
-            ctx.rect(this.x, this.y, this.width, this.height);
-            ctx.stroke();
-        }
-
-        // if (this instanceof Character) {
-        //     ctx.beginPath();
-        //     ctx.lineWidth = '5';
-        //     ctx.strokeStyle = 'red';
-        //     ctx.rect(?);
-        //     ctx.stroke();
-        // }
-    }
+    // drawBorder(ctx) {
+    //     if (this instanceof Character || this instanceof Chicken || this instanceof CollectableObject) {
+    //         ctx.beginPath();
+    //         ctx.lineWidth = '5';
+    //         ctx.strokeStyle = 'blue';
+    //         ctx.rect(this.x, this.y, this.width, this.height);
+    //         ctx.stroke();
+    //     }
+    // }
     // 2.7: Rahmen um Objekte machen, damit man später Kollision erkennen kann
     // 2.9: mit instanceof die Funktion nur für Character und Chicken anwenden
 }

@@ -11,6 +11,7 @@ class World {
     statusbarEndboss = new StatusbarEndboss();
     throwableObjects = []; //2.20
     endboss = new Endboss();
+    enemie_sound = new Audio('audio/enemiehit.mp3');
 
 
     constructor(canvas, keyboard) {
@@ -37,22 +38,15 @@ class World {
 
         this.ctx.translate(-this.camera_x, 0); //2.19: schieben Bildausschnitt zurück
         // SPACE FOR FIXED OBJECTS
-        this.addToMap(this.statusbarHealth); //2.18.
-        this.addToMap(this.statusbarCoins);
-        this.addToMap(this.statusbarBottles);
-        if(this.character.x > 1400) {
-            this.addToMap(this.statusbarEndboss);
-        }
-        
-        
+        this.addStatusbars();
         this.ctx.translate(this.camera_x, 0); //2.19: schieben Bildausschnitt wieder vor
         
+        this.addObjectsToMap(this.level.enemies);
+        this.addToMap(this.character);
         this.addObjectsToMap(this.level.coins);
         this.addObjectsToMap(this.level.bottles);
-        this.addToMap(this.character);
         this.addToMap(this.endboss);
-
-        this.addObjectsToMap(this.level.enemies);
+        
 
         this.addObjectsToMap(this.throwableObjects);
         // 15: Reihenfolge des Einfügens enscheidet über Reihenfolge der Objekte auf der Canvas
@@ -67,6 +61,15 @@ class World {
         });
         //10: ruft draw-Funktion so oft auf, wie es Grafikkarte hergibt
 
+    }
+
+    addStatusbars() {
+        this.addToMap(this.statusbarHealth); //2.18.
+        this.addToMap(this.statusbarCoins);
+        this.addToMap(this.statusbarBottles);
+        if(this.character.x > 1400) {
+            this.addToMap(this.statusbarEndboss);
+        }
     }
 
 
@@ -84,7 +87,7 @@ class World {
             this.flipImage(mo);
         }
         mo.draw(this.ctx);
-        mo.drawBorder(this.ctx);
+        // mo.drawBorder(this.ctx);
         //1.9: Rückgängimachen Spiegelung für die anderen Elemente
         if (mo.otherDirection) {
             this.flipImageBack(mo);
@@ -161,7 +164,6 @@ class World {
         this.level.enemies.forEach((enemy, index) => {
             if (this.character.isColliding(enemy) &&
             this.character.isAboveGround()) {
-                console.log('Character jumps on', enemy);
                 this.killEnemie(index);
             }
         });
@@ -169,6 +171,7 @@ class World {
 
 
     killEnemie(index) {
+        this.enemie_sound.play();
         this.level.enemies.splice(index, 1);
     }
 
