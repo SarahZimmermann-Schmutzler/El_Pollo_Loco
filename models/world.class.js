@@ -141,6 +141,7 @@ class World {
     checkCollisions() {
         this.checkCollisionsEnemies();
         this.checkJumpOnEnemies();
+        this.checkCollisionsEndboss()
         this.checkCollisionsCoins();
         this.checkCollisionsBottles();
     }
@@ -157,6 +158,15 @@ class World {
                 this.statusbarHealth.setPercentage(this.character.energy); //2.19: Prozentzahl die Statusbar einnehmen soll (Bild dass gezeigt werden soll) an Energiestand gekoppelt
             }
         });
+    }
+
+
+    checkCollisionsEndboss() {
+            if (this.character.isColliding(this.endboss)) {
+                // console.log('Collision with Character', this.endboss);
+                this.character.hit();
+                this.statusbarHealth.setPercentage(this.character.energy); //2.19: Prozentzahl die Statusbar einnehmen soll (Bild dass gezeigt werden soll) an Energiestand gekoppelt
+            }
     }
 
 
@@ -180,6 +190,7 @@ class World {
         this.throwableObjects.forEach((bottle) => {
             if (this.endboss.isColliding(bottle)) {
                 console.log('Enemie is hit', bottle);
+                this.endboss.hit();
                 this.endboss.hitWithBottle();
                 this.statusbarEndboss.setPercentage(this.endboss.energy);
             }
