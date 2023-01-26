@@ -230,7 +230,19 @@ canvas {
         width: 100%;
     }
 
+    .endscreen {
+        width: 100%;
+    }
+
+    .gameover {
+        width: 100%;
+    }
+
     .btn-container {
+        justify-content: center;
+    }
+
+    .btn-container-restart {
         justify-content: center;
     }
 
@@ -265,6 +277,14 @@ canvas {
         height: 100vh;
     }
 
+    .endscreen {
+        height: 100vh;
+    }
+
+    .gameover {
+        height: 100vh;
+    }
+
     h1 {
         display: none;
     }
@@ -280,7 +300,6 @@ canvas {
     .explanation {
         display: none;
     }
-
 
     .fullscreen {
         display: none;
