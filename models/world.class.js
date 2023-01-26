@@ -11,7 +11,7 @@ class World {
     statusbarEndboss = new StatusbarEndboss();
     throwableObjects = []; //2.20
     endboss = new Endboss();
-    enemie_sound = new Audio('audio/enemiehit.mp3');
+    
 
 
     constructor(canvas, keyboard) {
@@ -130,7 +130,7 @@ class World {
 
         setStoppableInterval(() => {
             this.checkCollisions();
-        }, 400);
+        }, 60);
 
         setStoppableInterval(() => {
             this.checkCollisionsThrownBottles();
@@ -174,16 +174,13 @@ class World {
         this.level.enemies.forEach((enemy, index) => {
             if (this.character.isColliding(enemy) &&
             this.character.isAboveGround()) {
-                this.killEnemie(index);
+                this.character.killEnemie(index);
             }
         });
     }
 
 
-    killEnemie(index) {
-        this.enemie_sound.play();
-        this.level.enemies.splice(index, 1);
-    }
+    
 
 
     checkCollisionsThrownBottles() {

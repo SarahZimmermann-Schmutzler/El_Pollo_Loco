@@ -103,10 +103,7 @@ class Character extends MovableObject {
             if(this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
                 // this.dead_sound.play();
-                document.getElementById('gameover').classList.remove('d-none');
-                document.getElementById('canvas').classList.add('d-none');
-                document.getElementById('btn-container-restart').classList.remove('d-none');
-                document.getElementById('restartbtn').classList.remove('d-none');
+                this.showLostScreen();
                 stopGame()
             }
             // 2.13: wenn wir tot sind, andere Grafiken anzeigen
@@ -128,6 +125,13 @@ class Character extends MovableObject {
     //1.7: nur, wenn Taste right gedrückt wird, wird Funktion ausgeführt 
     //in if Bedingung wird getestet, ob die bedingung true ist, deswegen steht dort nur right
     //1.8: fügen zu ig Bedingung hinzu: || (oder) linke Taste gedrückt
+
+    showLostScreen() {
+        document.getElementById('gameover').classList.remove('d-none');
+        document.getElementById('canvas').classList.add('d-none');
+        document.getElementById('btn-container-restart').classList.remove('d-none');
+        document.getElementById('restartbtn').classList.remove('d-none');
+    }
 
 }
 // 07: hat alle Eigenschaften, die in Klasse Movable Object definiert sind + Funktion jump

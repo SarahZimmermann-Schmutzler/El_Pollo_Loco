@@ -5,6 +5,9 @@ function initLevelOne() {
         [
             new Chicken(),
             new Chicken(),
+            new Chicken(),
+            new Chicken(),
+            new Chicken(),
             new Chicken()
             // new Endboss()
         ],

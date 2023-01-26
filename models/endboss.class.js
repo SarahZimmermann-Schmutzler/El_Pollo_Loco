@@ -84,6 +84,7 @@ class Endboss extends MovableObject {
         }, 200);
     }
 
+    
     showEndscreen() {
         document.getElementById('gameover').classList.remove('d-none');
         document.getElementById('gameover').classList.remove('gameover');

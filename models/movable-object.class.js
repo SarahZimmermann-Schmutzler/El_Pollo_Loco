@@ -142,5 +142,9 @@ class MovableObject extends DrawableObject {
     }
     // 2.14: returned true, wenn wir innerhalb der letzten Sekunde getroffen wurden
 
-    
+
+    killEnemie(index) {
+        this.enemie_sound.play();
+        this.world.level.enemies.splice(index, 1);
+    }
 }
