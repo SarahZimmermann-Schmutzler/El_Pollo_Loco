@@ -2,6 +2,7 @@ class Endboss extends MovableObject {
     height = 400;
     width = 250;
     y = 60;
+    hit_sound = new Audio('audio/chicken1.mp3');
 
     IMAGES_ALERT = [
         'img/4_enemie_boss_chicken/2_alert/G5.png',
@@ -73,6 +74,7 @@ class Endboss extends MovableObject {
             }
 
             if(this.isHurt()) {
+                this.hit_sound.play();
                 this.playAnimation(this.IMAGES_HURT);
             }
             

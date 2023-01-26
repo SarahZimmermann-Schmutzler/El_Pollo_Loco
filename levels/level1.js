@@ -8,8 +8,10 @@ function initLevelOne() {
             new Chicken(),
             new Chicken(),
             new Chicken(),
-            new Chicken()
-            // new Endboss()
+            new Chicken(),
+            new LittleChicken(),
+            new LittleChicken(),
+            new LittleChicken(),
         ],
         [
             new Cloud()

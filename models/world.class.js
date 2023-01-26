@@ -154,7 +154,9 @@ class World {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy)) {
                 // console.log('Collision with Character', enemy);
-                this.character.hit();
+                if(!this.character.isAboveGround()) {
+                    this.character.hit();
+                }
                 this.statusbarHealth.setPercentage(this.character.energy); //2.19: Prozentzahl die Statusbar einnehmen soll (Bild dass gezeigt werden soll) an Energiestand gekoppelt
             }
         });
@@ -181,8 +183,6 @@ class World {
 
 
     
-
-
     checkCollisionsThrownBottles() {
         this.throwableObjects.forEach((bottle) => {
             if (this.endboss.isColliding(bottle)) {
