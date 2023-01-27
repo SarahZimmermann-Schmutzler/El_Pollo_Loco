@@ -59,34 +59,38 @@ class Endboss extends MovableObject {
 
     animate() {
         setStoppableInterval(() => {
-            if(world.character.x > 1500) {
+            if (world.character.x > 1500) {
                 this.moveLeft();
             }
         }, 1000 / 60);
 
         setStoppableInterval(() => {
-            if(world.character.x > 1400) {
+            if (world.character.x > 1400) {
                 this.playAnimation(this.IMAGES_ALERT);
-            } 
-            
-            if(world.character.x > 1500) {
+            }
+
+            if (world.character.x > 1500) {
                 this.playAnimation(this.IMAGES_ATTACK);
             }
 
-            if(this.isHurt()) {
+            if (this.isHurt()) {
                 this.hit_sound.play();
                 this.playAnimation(this.IMAGES_HURT);
             }
-            
+
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
-                this.showEndscreen();
+
+                setTimeout(() => {
+                    this.showEndscreen();
+                }, 2000)
+
                 stopGame();
             }
         }, 200);
     }
 
-    
+
     showEndscreen() {
         document.getElementById('gameover').classList.remove('d-none');
         document.getElementById('gameover').classList.remove('gameover');

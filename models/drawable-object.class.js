@@ -1,12 +1,12 @@
 class DrawableObject {
     x = 120;
-    y = 80; //140
+    y = 80;
     height = 150;
     width = 100;
     img;
     imageCache = {};
     // 1.2: hier hinein werden die Bilder gespeichert, die wir brauchen, um verschiedene Bewegungen darzustellen
-    currentImage = 0; //1.3
+    currentImage = 0;
     offset = {
         top: 0,
         bottom: 0,

@@ -246,24 +246,21 @@ canvas {
         justify-content: center;
     }
 
-    .nofullscreen-icon {
-        display: none;
-    }
-
-    .fullscreen-icon {
-        display: none;
-    }
-
     h1 {
         display: none;
     }
 
     .explanation {
-        display: none;
+        width: 500px;
     }
 
-    .fullscreen {
-        display: none;
+    .keys img {
+        width: 18px;
+        height: 18px;
+    }
+
+    .keys span {
+        font-size: 14px;
     }
 }
 
@@ -289,19 +286,16 @@ canvas {
         display: none;
     }
 
-    .nofullscreen-icon {
-        display: none;
-    }
-
-    .fullscreen-icon {
-        display: none;
-    }
-
     .explanation {
-        display: none;
+        width: 500px;
     }
 
-    .fullscreen {
-        display: none;
+    .keys img {
+        width: 18px;
+        height: 18px;
+    }
+
+    .keys span {
+        font-size: 14px;
     }
 }

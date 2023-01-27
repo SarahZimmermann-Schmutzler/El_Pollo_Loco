@@ -1,15 +1,15 @@
 class MovableObject extends DrawableObject {
-    speed = 0.15; //1.5
-    otherDirection = false; //1.9: ist zum Spiegeln des Bildes, wenn nach links läuft
-    speedY = 0; //2.2: Fallgeschwindigkeit für applyGravity Funktion
-    acceleration = 2.5; //2.2: Wie schnell Objekte beschleunigt werden
-    energy = 100; //2.12
-    lastHit = 0; //2.14: brauchen wir für die Hurt Animation
+    speed = 0.15;
+    otherDirection = false;
+    speedY = 0;
+    acceleration = 2.5;
+    energy = 100; 
+    lastHit = 0;
     coins = 0;
     bottles = 0;
     coin_sound = new Audio('audio/coin.mp3');
     bottle_sound = new Audio('audio/bottle.mp3');
-    enemie_sound = new Audio('audio/enemiehit.mp3');
+    enemie_sound = new Audio('audio/hitenemie1.mp3');
     
     
 
@@ -34,7 +34,8 @@ class MovableObject extends DrawableObject {
 
     playAnimation(images) {
         let i = this.currentImage % images.length;
-        // let i = 0 modulu/Mathematischer Rest 6, wenn es 7 bilder sind, wie bei IMAGES_WALKING --> i = 0, 1, 2, 3, 4, 5, 0
+        // let i = 0 modulu/Mathematischer Rest 6, wenn es 7 bilder sind, 
+        //wie bei IMAGES_WALKING --> i = 0, 1, 2, 3, 4, 5, 0
         let path = images[i];
         this.img = this.imageCache[path];
         this.currentImage++;
@@ -49,8 +50,6 @@ class MovableObject extends DrawableObject {
     moveLeft() {
         this.x -= this.speed;
     }
-    //1.5: machen so die eigentliche Wolkenanimation für alle movableObjects zugänglich
-    //2.5: nehmen das setInterval heraus und setzen es bei den Hühnchen dahin wo Funktion aufgerufen wird
 
 
     applyGravity() {
@@ -80,8 +79,7 @@ class MovableObject extends DrawableObject {
 
 
     jump() {
-        this.speedY = 30;
-        // 2.6: je höher die Zahl, desto höher springt er
+        this.speedY = 30; // 2.6: je höher die Zahl, desto höher springt er
     }
 
 
@@ -92,7 +90,6 @@ class MovableObject extends DrawableObject {
         if(this.bottles > 100 ) {
             this.bottles = 100;
         }
-       
     }
 
 

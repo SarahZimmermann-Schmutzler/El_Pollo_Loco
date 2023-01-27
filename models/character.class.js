@@ -1,7 +1,7 @@
 class Character extends MovableObject {
     height = 300;
     width = 150;
-    speed = 10; //1.8
+    speed = 10;
     IMAGES_WALKING = [
         'img/2_character_pepe/2_walk/W-21.png',
         'img/2_character_pepe/2_walk/W-22.png',
@@ -21,7 +21,7 @@ class Character extends MovableObject {
         'img/2_character_pepe/3_jump/J-37.png',
         'img/2_character_pepe/3_jump/J-38.png',
         'img/2_character_pepe/3_jump/J-39.png'
-    ]; //2.3: weiteres Array mit den Spring-Bildern
+    ];
 
     IMAGES_DEAD = [
         'img/2_character_pepe/5_dead/D-51.png',
@@ -31,13 +31,13 @@ class Character extends MovableObject {
         'img/2_character_pepe/5_dead/D-55.png',
         'img/2_character_pepe/5_dead/D-56.png',
         'img/2_character_pepe/5_dead/D-57.png'
-    ]; //2.13: weiteres Array mit den Tot-Bildern
+    ];
 
     IMAGES_HURT = [
         'img/2_character_pepe/4_hurt/H-41.png',
         'img/2_character_pepe/4_hurt/H-42.png',
         'img/2_character_pepe/4_hurt/H-43.png'
-    ]; //2.14: weiteres Array mit den Getroffen-Bildern
+    ];
 
     world; //1.7: gehört zur Verknüpfung World mit Charakter, damit wir die Variable Keyboard benutzen können
     walking_sound = new Audio('audio/running1.mp3'); //1.15
@@ -58,7 +58,7 @@ class Character extends MovableObject {
         this.loadImages(this.IMAGES_JUMPING); //2.3:gleiches für Jump-Bilder
         this.loadImages(this.IMAGES_DEAD); //2.13:gleiches für Tot-Bilder
         this.loadImages(this.IMAGES_HURT); //2.14:gleiches für Verletzt-Bilder
-        this.applyGravity(); //2.2
+        this.applyGravity();
         this.animate();
     }
     // 08:constructor wird immer zuerst geladen
@@ -102,8 +102,10 @@ class Character extends MovableObject {
         setStoppableInterval(() => {
             if(this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
-                // this.dead_sound.play();
-                this.showLostScreen();
+                this.dead_sound.play();
+                setTimeout(() => {
+                    this.showLostScreen();
+                }, 2000);
                 stopGame()
             }
             // 2.13: wenn wir tot sind, andere Grafiken anzeigen
