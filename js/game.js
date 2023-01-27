@@ -50,25 +50,28 @@ function resetSpeakerSymbol() {
 function muteSounds() {
     document.getElementById('speaker-game').classList.add('d-none');
     document.getElementById('mute-game').classList.remove('d-none');
-    this.walking_sound.muted;
-    // this.walking_sound.muted = true;
-    // this.walking_sound.pause();
-    // this.hit_sound.muted = true;
-    // this.hit_sound.pause();
-    // this.dead_sound.muted = true;
-    // this.dead_sound.pause();
+    world.character.walking_sound.muted = true;
+    world.character.walking_sound.pause();
+    world.character.hit_sound.muted = true;
+    world.character.hit_sound.pause();
+    world.character.dead_sound.muted = true;
+    world.character.dead_sound.pause();
+    world.endboss.hit_sound.muted = true;
+    world.endboss.hit_sound.pause();
 }
 
 
 function playSounds() {
     document.getElementById('speaker-game').classList.remove('d-none');
     document.getElementById('mute-game').classList.add('d-none');
-    this.walking_sound.muted = false;
-    this.walking_sound.play();
-    this.hit_sound.muted = false;
-    this.hit_sound.play();
-    this.dead_sound.muted = false;
-    this.dead_sound.play(); 
+    world.character.walking_sound.muted = false;
+    world.character.walking_sound.play();
+    world.character.hit_sound.muted = false;
+    world.character.hit_sound.play();
+    world.character.dead_sound.muted = false;
+    world.character.dead_sound.play();
+    world.endboss.hit_sound.muted = false;
+    world.endboss.hit_sound.play();
 }
 
 

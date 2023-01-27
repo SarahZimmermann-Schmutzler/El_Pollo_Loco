@@ -58,7 +58,6 @@ canvas {
     object-fit: contain;
     margin-right: 20px;
     cursor: pointer;
-    /* z-index: 2; */
 }
 
 .fullscreen-icon img:hover {
