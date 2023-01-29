@@ -11,6 +11,7 @@ function setStoppableInterval(fn, time) {
 }
 
 
+//Music Functions
 function welcomeMusic() {
     setStoppableInterval(() => {
         this.welcome_sound.play();
@@ -48,33 +49,86 @@ function resetSpeakerSymbol() {
 
 
 function muteSounds() {
+    muteSymbolOn();
+    muteCharacterSounds();
+    muteEnemieSounds();
+    muteCollectablesSounds()
+}
+
+
+function muteSymbolOn() {
     document.getElementById('speaker-game').classList.add('d-none');
     document.getElementById('mute-game').classList.remove('d-none');
+}
+
+
+function muteCharacterSounds() {
     world.character.walking_sound.muted = true;
     world.character.walking_sound.pause();
     world.character.hit_sound.muted = true;
     world.character.hit_sound.pause();
     world.character.dead_sound.muted = true;
     world.character.dead_sound.pause();
+}
+
+
+function muteEnemieSounds() {
     world.endboss.hit_sound.muted = true;
     world.endboss.hit_sound.pause();
+    world.enemie_sound.muted = true;
+    world.enemie_sound.pause();
+}
+
+
+function muteCollectablesSounds() {
+    world.coin_sound.muted = true;
+    world.coin_sound.pause();
+    world.bottle_sound.muted = true;
+    world.bottle_sound.pause();
 }
 
 
 function playSounds() {
+    speakerSymbolOn();
+    playCharacterSounds();
+    playEnemieSounds();
+    playCollectableSounds();
+}
+
+
+function speakerSymbolOn() {
     document.getElementById('speaker-game').classList.remove('d-none');
     document.getElementById('mute-game').classList.add('d-none');
+}
+
+
+function playCharacterSounds() {
     world.character.walking_sound.muted = false;
     world.character.walking_sound.play();
     world.character.hit_sound.muted = false;
     world.character.hit_sound.play();
     world.character.dead_sound.muted = false;
     world.character.dead_sound.play();
-    world.endboss.hit_sound.muted = false;
-    world.endboss.hit_sound.play();
 }
 
 
+function playEnemieSounds() {
+    world.endboss.hit_sound.muted = false;
+    world.endboss.hit_sound.play();
+    world.enemie_sound.muted = false;
+    world.enemie_sound.play();
+}
+
+
+function playCollectableSounds() {
+    world.coin_sound.muted = false;
+    world.coin_sound.play();
+    world.bottle_sound.muted = false;
+    world.bottle_sound.play();
+}
+
+
+//Game Functions
 function startGame() {
     showGame();
     stopWelcomeMusic();
@@ -119,6 +173,12 @@ function initGame() {
 }
 
 
+function stopGame() {
+    intervalIds.forEach(clearInterval);
+}
+
+
+//EventListener for Keyboard
 window.addEventListener('keydown', (event) => {
     if(event.keyCode == 39) {
         keyboard.RIGHT = true;
@@ -163,6 +223,3 @@ window.addEventListener('keyup', (event) => {
 // schaltet dann um von true auf false
 
 
-function stopGame() {
-    intervalIds.forEach(clearInterval);
-}

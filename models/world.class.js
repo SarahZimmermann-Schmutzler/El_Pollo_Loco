@@ -11,6 +11,9 @@ class World {
     statusbarEndboss = new StatusbarEndboss();
     endboss = new Endboss();
     throwableObjects = [];
+    coin_sound = new Audio('audio/coin.mp3');
+    bottle_sound = new Audio('audio/bottle.mp3');
+    enemie_sound = new Audio('audio/hitenemie1.mp3');
     
 
     constructor(canvas, keyboard) {
