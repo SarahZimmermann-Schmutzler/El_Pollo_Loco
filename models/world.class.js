@@ -184,12 +184,13 @@ class World {
 
 
     checkCollisionsThrownBottles() {
-        this.throwableObjects.forEach((bottle) => {
+        this.throwableObjects.forEach((bottle, index) => {
             if (this.endboss.isColliding(bottle)) {
-                console.log('Enemie is hit', bottle);
+                // console.log('Enemie is hit', bottle);
                 this.endboss.hit();
                 this.endboss.hitWithBottle();
                 this.statusbarEndboss.setPercentage(this.endboss.energy);
+                this.throwableObjects.splice(index, 1);
             }
         });
     }
@@ -198,7 +199,7 @@ class World {
     checkCollisionsCoins() {
         this.level.coins.forEach((coin, index) => {
             if (this.character.isColliding(coin)) {
-                console.log('Collision with Character', coin);
+                // console.log('Collision with Character', coin);
                 this.collectingCoins(index);
             }
         });
@@ -245,7 +246,7 @@ class World {
     checkCollisionsBottles() {
         this.level.bottles.forEach((bottle, index) => {
             if (this.character.isColliding(bottle)) {
-                console.log('Collision with Character', bottle, index);
+                // console.log('Collision with Character', bottle, index);
                 this.collectingBottles(index);
             }
         });
@@ -272,7 +273,7 @@ class World {
 
     throwBottle() {
         this.character.bottles -= 20;
-        console.log('Collision with Character, bottles', this.character.bottles);
+        // console.log('Collision with Character, bottles', this.character.bottles);
         this.statusbarBottles.setPercentage(this.character.bottles);
     }
 }

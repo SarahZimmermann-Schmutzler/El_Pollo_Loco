@@ -103,27 +103,20 @@ function speakerSymbolOn() {
 
 function playCharacterSounds() {
     world.character.walking_sound.muted = false;
-    world.character.walking_sound.play();
     world.character.hit_sound.muted = false;
-    world.character.hit_sound.play();
     world.character.dead_sound.muted = false;
-    world.character.dead_sound.play();
 }
 
 
 function playEnemieSounds() {
     world.endboss.hit_sound.muted = false;
-    world.endboss.hit_sound.play();
     world.enemie_sound.muted = false;
-    world.enemie_sound.play();
 }
 
 
 function playCollectableSounds() {
     world.coin_sound.muted = false;
-    world.coin_sound.play();
     world.bottle_sound.muted = false;
-    world.bottle_sound.play();
 }
 
 
@@ -135,6 +128,7 @@ function startGame() {
     initLevelOne();
     initGame();
     touchPad();
+    playSounds();
 }
 
 
@@ -168,8 +162,7 @@ function showGameAfterRestart() {
 function initGame() {
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
-
-    console.log('My Character is', world.character);
+    // console.log('My Character is', world.character);
 }
 
 

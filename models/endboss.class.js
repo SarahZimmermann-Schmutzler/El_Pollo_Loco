@@ -45,12 +45,22 @@ class Endboss extends MovableObject {
         'img/4_enemie_boss_chicken/3_attack/G20.png'
     ];
 
+    IMAGES_SPLASH = [
+        'img/6_salsa_bottle/bottle_rotation/bottle_splash/1_bottle_splash.png',
+        'img/6_salsa_bottle/bottle_rotation/bottle_splash/2_bottle_splash.png',
+        'img/6_salsa_bottle/bottle_rotation/bottle_splash/3_bottle_splash.png',
+        'img/6_salsa_bottle/bottle_rotation/bottle_splash/4_bottle_splash.png',
+        'img/6_salsa_bottle/bottle_rotation/bottle_splash/5_bottle_splash.png',
+        'img/6_salsa_bottle/bottle_rotation/bottle_splash/6_bottle_splash.png',
+    ];
+
 
     constructor() {
         super().loadImage(this.IMAGES_ALERT[0]);
         this.loadImagesForAnimation();
+        this.loadImages(this.IMAGES_SPLASH);
         this.x = 2000;
-        this.speed = 0.10;
+        this.speed = 0.2;
         this.animate();
     }
 
@@ -83,6 +93,7 @@ class Endboss extends MovableObject {
         }
         if (this.isHurt()) {
             this.endbossIsHurt();
+            
         }
         if (this.isDead()) {
             this.endbossIsDead();
@@ -93,9 +104,10 @@ class Endboss extends MovableObject {
     endbossIsHurt() {
         this.hit_sound.play();
         this.playAnimation(this.IMAGES_HURT);
+        this.playAnimation(this.IMAGES_SPLASH);
     }
 
-    
+
     endbossIsDead() {
         this.playAnimation(this.IMAGES_DEAD);
         setTimeout(() => this.showEndscreen(), 2000);

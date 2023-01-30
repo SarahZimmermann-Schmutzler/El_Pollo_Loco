@@ -7,7 +7,7 @@ class MovableObject extends DrawableObject {
     lastHit = 0;
     coins = 0;
     bottles = 0;
-    
+
 
     isColliding(mo) {
         return this.x + this.width - this.offset.right > mo.x + mo.offset.left &&
@@ -71,7 +71,7 @@ class MovableObject extends DrawableObject {
     collectBottles() {
         this.bottles += 20;
         this.world.bottle_sound.play();
-        console.log('Collision with Character, bottles', this.bottles);
+        // console.log('Collision with Character, bottles', this.bottles);
         if(this.bottles > 100 ) {
             this.bottles = 100;
         }
@@ -81,7 +81,7 @@ class MovableObject extends DrawableObject {
     collectCoins() {
         this.coins += 20;
         this.world.coin_sound.play();
-        console.log('Collision with Character, coins', this.coins);
+        // console.log('Collision with Character, coins', this.coins);
         if(this.coins > 100 ) {
             this.coins = 100;
         }
@@ -90,7 +90,7 @@ class MovableObject extends DrawableObject {
 
     hitWithBottle() {
         this.energy -= 35;
-        console.log('Collision with Bottle, energy', this.energy);
+        // console.log('Collision with Bottle, energy', this.energy);
         if(this.energy < 0 ) {
             this.energy = 0;
         }
@@ -99,7 +99,7 @@ class MovableObject extends DrawableObject {
 
     hit() {
         this.energy -= 2;
-        console.log('Collision with Character, energy', this.energy);
+        // console.log('Collision with Character, energy', this.energy);
         if(this.energy < 0 ) {
             this.energy = 0;
         } else {
