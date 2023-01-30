@@ -3,7 +3,7 @@ let canvas;
 let world;
 let keyboard = new Keyboard();
 //1.6: Verknüpfung Objekt mit Variable, damit wir hier auf das Objekt zugreifen können
-welcome_sound = new Audio('audio/intro.mp3', loop='loop');
+welcome_sound = new Audio('audio/intro.mp3', loop = 'loop');
 
 function setStoppableInterval(fn, time) {
     let id = setInterval(fn, time);
@@ -36,7 +36,6 @@ function showMuteSymbol() {
 function stopWelcomeMusic() {
     this.welcome_sound.pause();
     intervalIds.forEach(clearInterval);
-
     showMuteSymbol();
 }
 
@@ -135,6 +134,7 @@ function startGame() {
     resetSpeakerSymbol();
     initLevelOne();
     initGame();
+    touchPad();
 }
 
 
@@ -180,19 +180,19 @@ function stopGame() {
 
 //EventListener for Keyboard
 window.addEventListener('keydown', (event) => {
-    if(event.keyCode == 39) {
+    if (event.keyCode == 39) {
         keyboard.RIGHT = true;
     }
-    if(event.keyCode == 37) {
+    if (event.keyCode == 37) {
         keyboard.LEFT = true;
     }
-    if(event.keyCode == 38) {
+    if (event.keyCode == 38) {
         keyboard.UP = true;
     }
-    if(event.keyCode == 40) {
+    if (event.keyCode == 40) {
         keyboard.DOWN = true;
     }
-    if(event.keyCode == 32) {
+    if (event.keyCode == 32) {
         keyboard.SPACE = true;
     }
     // console.log(event.keyCode);
@@ -203,23 +203,60 @@ window.addEventListener('keydown', (event) => {
 
 
 window.addEventListener('keyup', (event) => {
-    if(event.keyCode == 39) {
+    if (event.keyCode == 39) {
         keyboard.RIGHT = false;
     }
-    if(event.keyCode == 37) {
+    if (event.keyCode == 37) {
         keyboard.LEFT = false;
     }
-    if(event.keyCode == 38) {
+    if (event.keyCode == 38) {
         keyboard.UP = false;
     }
-    if(event.keyCode == 40) {
+    if (event.keyCode == 40) {
         keyboard.DOWN = false;
     }
-    if(event.keyCode == 32) {
+    if (event.keyCode == 32) {
         keyboard.SPACE = false;
     }
 });
 // 1.7: brauchen dasgleiche nochmal für die Situation, dass Taste wieder losgelassen wird
 // schaltet dann um von true auf false
+
+
+//EventListener for Touchpad
+function touchPad() {
+    document.getElementById('leftbtn').addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        keyboard.LEFT = true;
+    });
+    document.getElementById('leftbtn').addEventListener('touchend', (e) => {
+        e.preventDefault();
+        keyboard.LEFT = false;
+    });
+    document.getElementById('rightbtn').addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        keyboard.RIGHT = true;
+    });
+    document.getElementById('rightbtn').addEventListener('touchend', (e) => {
+        e.preventDefault();
+        keyboard.RIGHT = false;
+    });
+    document.getElementById('jumpbtn').addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        keyboard.UP = true;
+    });
+    document.getElementById('jumpbtn').addEventListener('touchend', (e) => {
+        e.preventDefault();
+        keyboard.UP = false;
+    });
+    document.getElementById('throwbtn').addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        keyboard.SPACE = true;
+    });
+    document.getElementById('throwbtn').addEventListener('touchend', (e) => {
+        e.preventDefault();
+        keyboard.SPACE = false;
+    });
+}
 
 

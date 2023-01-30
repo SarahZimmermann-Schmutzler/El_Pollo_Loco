@@ -45,17 +45,24 @@ class Endboss extends MovableObject {
         'img/4_enemie_boss_chicken/3_attack/G20.png'
     ];
 
+
     constructor() {
         super().loadImage(this.IMAGES_ALERT[0]);
+        this.loadImagesForAnimation();
+        this.x = 2000;
+        this.speed = 0.10;
+        this.animate();
+    }
+
+
+    loadImagesForAnimation() {
         this.loadImages(this.IMAGES_ALERT);
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_ATTACK);
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_DEAD);
-        this.x = 2000;
-        this.speed = 0.10;
-        this.animate();
     }
+
 
     animate() {
         setStoppableInterval(() => {
@@ -63,31 +70,36 @@ class Endboss extends MovableObject {
                 this.moveLeft();
             }
         }, 1000 / 60);
+        setStoppableInterval(() => this.playEndboss(), 200);
+    }
 
-        setStoppableInterval(() => {
-            if (world.character.x > 1400) {
-                this.playAnimation(this.IMAGES_ALERT);
-            }
 
-            if (world.character.x > 1500) {
-                this.playAnimation(this.IMAGES_ATTACK);
-            }
+    playEndboss() {
+        if (world.character.x > 1400) {
+            this.playAnimation(this.IMAGES_ALERT);
+        }
+        if (world.character.x > 1500) {
+            this.playAnimation(this.IMAGES_ATTACK);
+        }
+        if (this.isHurt()) {
+            this.endbossIsHurt();
+        }
+        if (this.isDead()) {
+            this.endbossIsDead();
+        }
+    }
 
-            if (this.isHurt()) {
-                this.hit_sound.play();
-                this.playAnimation(this.IMAGES_HURT);
-            }
 
-            if (this.isDead()) {
-                this.playAnimation(this.IMAGES_DEAD);
+    endbossIsHurt() {
+        this.hit_sound.play();
+        this.playAnimation(this.IMAGES_HURT);
+    }
 
-                setTimeout(() => {
-                    this.showEndscreen();
-                }, 2000)
-
-                stopGame();
-            }
-        }, 200);
+    
+    endbossIsDead() {
+        this.playAnimation(this.IMAGES_DEAD);
+        setTimeout(() => this.showEndscreen(), 2000);
+        stopGame();
     }
 
 

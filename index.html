@@ -51,15 +51,40 @@
         
         <canvas width="720px" height="480px" id="canvas" class="d-none"></canvas>
 
-        <div class="fullscreen-icon">
-            <img src="img/10_other/mute.png" onclick="welcomeMusic()" id="mute" class="speaker">
-            <img src="img/10_other/speaker.png" onclick="stopWelcomeMusic()" id="speaker" class="d-none speaker">
-            <img src="img/10_other/mute.png" onclick="playSounds()" id="mute-game" class="speaker d-none">
-            <img src="img/10_other/speaker.png" onclick="muteSounds()" id="speaker-game" class="d-none speaker">
-
-            <img src="img/10_other/full.png" onclick="fullscreen()" id="fullscreen-icon" class="">
-            <img src="img/10_other/nofull.png" onclick="closeFullscreen()" id="nofullscreen-icon" class="d-none">
+        <div class="panel">
+            <div class="touch-control">
+                <div class="keys">
+                    <img src="img/10_other/left.png" id="leftbtn">
+                    <span>Walk Left</span>
+                </div>
+    
+                <div class="keys">
+                    <img src="img/10_other/right.png" id="rightbtn">
+                    <span>Walk Right</span>
+                </div>
+    
+                <div class="keys">
+                    <img src="img/10_other/up.png" id="jumpbtn">
+                    <span>Jump</span>
+                </div>
+    
+                <div class="keys">
+                    <img src="img/10_other/space.png" id="throwbtn">
+                    <span>Throw Bottle</span>
+                </div>
+            </div>
+            <div class="fullscreen-icon">
+                <img src="img/10_other/mute.png" onclick="welcomeMusic()" id="mute" class="speaker">
+                <img src="img/10_other/speaker.png" onclick="stopWelcomeMusic()" id="speaker" class="d-none speaker">
+                <img src="img/10_other/mute.png" onclick="playSounds()" id="mute-game" class="speaker d-none">
+                <img src="img/10_other/speaker.png" onclick="muteSounds()" id="speaker-game" class="d-none speaker">
+    
+                <img src="img/10_other/full.png" onclick="fullscreen()" id="fullscreen-icon" class="">
+                <img src="img/10_other/nofull.png" onclick="closeFullscreen()" id="nofullscreen-icon" class="d-none">
+            </div>
         </div>
+
+        
 
         <div class="explanation">
             <div class="keys">

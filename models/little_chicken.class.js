@@ -1,6 +1,5 @@
 class LittleChicken extends MovableObject {
     y = 370;
-
     height = 50;
     width = 50;
     IMAGES_WALKING = [
@@ -23,13 +22,7 @@ class LittleChicken extends MovableObject {
     }
 
     animate() {
-        setStoppableInterval(() => {
-            this.moveLeft();
-        }, 1000 / 60);
-
-
-        setStoppableInterval(() => {
-            this.playAnimation(this.IMAGES_WALKING);
-        }, 200);
+        setStoppableInterval(() => this.moveLeft(), 1000 / 60);
+        setStoppableInterval(() => this.playAnimation(this.IMAGES_WALKING), 200);
     }
 }

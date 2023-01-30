@@ -14,12 +14,14 @@ class DrawableObject {
         right: 0 
     }
 
+    
     loadImage(path) {
         this.img = new Image();
         this.img.src = path;
     }
     // 08: diese Funktion legt den Grundstein für das Laden der Bilder
     // 08: mit entsprechenden Wert werden sie in der entsprechenden Klasse gefüllt
+
 
     draw(ctx) {
         ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
@@ -37,6 +39,8 @@ class DrawableObject {
             this.imageCache[path] = img;
         });
     }
+
+    //Draw Border Function
 
     // drawBorder(ctx) {
     //     if (this instanceof Character || this instanceof Chicken || this instanceof CollectableObject) {

@@ -1,4 +1,5 @@
 class Character extends MovableObject {
+    world; //1.7: gehört zur Verknüpfung World mit Charakter, damit wir die Variable Keyboard benutzen können
     height = 300;
     width = 150;
     speed = 10;
@@ -39,16 +40,16 @@ class Character extends MovableObject {
         'img/2_character_pepe/4_hurt/H-43.png'
     ];
 
-    world; //1.7: gehört zur Verknüpfung World mit Charakter, damit wir die Variable Keyboard benutzen können
-    walking_sound = new Audio('audio/running1.mp3'); //1.15
-    hit_sound = new Audio('audio/pepehit1.mp3');
-    dead_sound = new Audio('audio/pepedead.mp3');
     offset = {
         top: 120,
         bottom: 30,
         left: 40,
-        right: 30 
+        right: 30
     }
+    walking_sound = new Audio('audio/running1.mp3'); //1.15
+    hit_sound = new Audio('audio/pepehit1.mp3');
+    dead_sound = new Audio('audio/pepedead.mp3');
+
 
     constructor() {
         super().loadImage('img/2_character_pepe/2_walk/W-21.png');
@@ -64,69 +65,100 @@ class Character extends MovableObject {
     // 08:constructor wird immer zuerst geladen
     // 08:laden die loadImage Funktion aus der Superklasse und fügen ihr den passenden Wert hinzu
 
+    
     animate() {
         this.walking_sound.pause(); //1.15: Sound ist angehalten und wird abgespielt, wenn sich Figur bewegt
-
-        setStoppableInterval(() => {
-            if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
-                this.moveRight();
-                this.otherDirection = false;
-                this.walking_sound.play();
-            }
-            // 1.14: durch && this.x < ... kann er nicht weiter nach rechts laufen als bis zur Variable level_end_x
-
-            if (this.world.keyboard.LEFT && this.x > 0) {
-                this.moveLeft();
-                this.otherDirection = true;
-                this.walking_sound.play();
-            }
-            // 1.14: durch && this.x > 0 kann er nicht weiter nach links laufen als bis zur 0
-
-            if (this.world.keyboard.UP && !this.isAboveGround()) {
-                this.jump();
-            }
-            // 2.4: wenn Space drücken wird Initialwert der Fallfunktion auf 20 gesetzt --> springen
-            // 2.5: wenn Space drücke und wenn nicht isAboveGround (also wenn wir nicht auf dem Boden sind (y > 130???))
-
-            this.world.camera_x = -this.x + 100;
-            // 1.11: wenn sich Chracter bewegt, soll ich Bildausschnitt mitbewegen
-            // camera_x ist in der world.class gespeichert (100px)
-            // 1.14: setzen ihn 100px nach rechts
-        }, 1000 / 60);
-        // 1.8.: Charakter soll sich nach vorn bewegen, nutzen dazu speed 
-        // (überschreiben wir oben, weil sonst zu langsam)
-        // fügen das ganze noch für Links hinzu
-        //1.9: fügen die otherDirection ein
-
-
-        setStoppableInterval(() => {
-            if(this.isDead()) {
-                this.playAnimation(this.IMAGES_DEAD);
-                this.dead_sound.play();
-                setTimeout(() => {
-                    this.showLostScreen();
-                }, 2000);
-                stopGame()
-            }
-            // 2.13: wenn wir tot sind, andere Grafiken anzeigen
-            else if (this.isHurt()) {
-                this.playAnimation(this.IMAGES_HURT);
-                this.hit_sound.play();
-            } //2.14: wenn ich verletzt bin, das abspielen
-            else if (this.isAboveGround()) {
-                this.playAnimation(this.IMAGES_JUMPING);
-                // 2.3: wenn er über der Erde schwebt sollen die Jumping-Bilder animiert/abgespielt werden
-            } else {
-                if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
-                    this.playAnimation(this.IMAGES_WALKING);
-                }
-            }
-        }, 50);
+        setStoppableInterval(() => this.moveCharacter(), 1000 / 60);
+        setStoppableInterval(() => this.playCharacter(), 50);
     }
-    // 1.3: Walk Animation
-    //1.7: nur, wenn Taste right gedrückt wird, wird Funktion ausgeführt 
-    //in if Bedingung wird getestet, ob die bedingung true ist, deswegen steht dort nur right
-    //1.8: fügen zu ig Bedingung hinzu: || (oder) linke Taste gedrückt
+
+
+    moveCharacter() {
+        if (this.goesRight()) {
+            this.characterMovesRight();
+        }
+        if (this.goesLeft()) {
+            this.characterMovesLeft();
+        }
+        if (this.goesUpInTheAir()) {
+            this.jump();
+        }
+        // 2.4: wenn Space drücken wird Initialwert der Fallfunktion auf 20 gesetzt --> springen
+        // 2.5: wenn Space drücke und wenn nicht isAboveGround (also wenn wir nicht auf dem Boden sind (y > 130???))
+
+        this.world.camera_x = -this.x + 100;
+        // 1.11: wenn sich Chracter bewegt, soll ich Bildausschnitt mitbewegen
+        // camera_x ist in der world.class gespeichert (100px)
+        // 1.14: setzen ihn 100px nach rechts
+    }
+
+
+    goesRight() {
+        return this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x;
+    } //durch && this.x < ... kann er nicht weiter nach rechts laufen als bis zur Variable level_end_x
+
+
+    goesLeft() {
+        return this.world.keyboard.LEFT && this.x > 0;
+    } //durch && this.x > 0 kann er nicht weiter nach links laufen als bis zur 0
+
+
+    goesUpInTheAir() {
+        return this.world.keyboard.UP && !this.isAboveGround();
+    }
+
+
+    characterMovesRight() {
+        this.moveRight();
+        this.otherDirection = false;
+        this.walking_sound.play();
+    }
+
+
+    characterMovesLeft() {
+        this.moveLeft();
+        this.otherDirection = true;
+        this.walking_sound.play();
+    }
+
+
+    playCharacter() {
+        if (this.isDead()) {
+            this.characterIsDead();
+        }
+        else if (this.isHurt()) {
+            this.characterIsHurt();
+        }
+        else if (this.isAboveGround()) {
+            this.playAnimation(this.IMAGES_JUMPING);
+        } else {
+            if (this.goesRightOrLeft()) {
+                this.playAnimation(this.IMAGES_WALKING);
+            }
+        }
+    }
+
+
+    goesRightOrLeft() {
+        return this.world.keyboard.RIGHT || this.world.keyboard.LEFT;
+    }
+
+
+    characterIsDead() {
+        this.playAnimation(this.IMAGES_DEAD);
+        this.dead_sound.play();
+        setTimeout(() => {
+            this.showLostScreen();
+        }, 2000);
+        stopGame()
+    }
+
+
+    characterIsHurt() {
+        this.playAnimation(this.IMAGES_HURT);
+        this.hit_sound.play();
+    }
+
 
     showLostScreen() {
         document.getElementById('gameover').classList.remove('d-none');
@@ -134,6 +166,4 @@ class Character extends MovableObject {
         document.getElementById('btn-container-restart').classList.remove('d-none');
         document.getElementById('restartbtn').classList.remove('d-none');
     }
-
 }
-// 07: hat alle Eigenschaften, die in Klasse Movable Object definiert sind + Funktion jump

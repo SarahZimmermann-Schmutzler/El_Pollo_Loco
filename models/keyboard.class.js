@@ -5,5 +5,3 @@ class Keyboard {
     DOWN = false;
     SPACE = false;
 }
-// 1.6: Character soll nach rechts und links laufen, wenn man die Pfeiltasten links und rechts drückt
-// brauchen dafür diese Klasse

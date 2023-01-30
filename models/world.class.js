@@ -14,7 +14,7 @@ class World {
     coin_sound = new Audio('audio/coin.mp3');
     bottle_sound = new Audio('audio/bottle.mp3');
     enemie_sound = new Audio('audio/hitenemie1.mp3');
-    
+
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -54,7 +54,7 @@ class World {
         this.addToMap(this.statusbarHealth);
         this.addToMap(this.statusbarCoins);
         this.addToMap(this.statusbarBottles);
-        if(this.character.x > 1400) {
+        if (this.character.x > 1400) {
             this.addToMap(this.statusbarEndboss);
         }
     }
@@ -153,10 +153,10 @@ class World {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy)) {
                 // console.log('Collision with Character', enemy);
-                if(!this.character.isAboveGround()) {
+                if (!this.character.isAboveGround()) {
                     this.character.hit();
                 }
-                this.statusbarHealth.setPercentage(this.character.energy); 
+                this.statusbarHealth.setPercentage(this.character.energy);
                 //2.19: Prozentzahl die Statusbar einnehmen soll (Bild dass gezeigt werden soll) an Energiestand gekoppelt
             }
         });
@@ -164,25 +164,25 @@ class World {
 
 
     checkCollisionsEndboss() {
-            if (this.character.isColliding(this.endboss)) {
-                // console.log('Collision with Character', this.endboss);
-                this.character.hit();
-                this.statusbarHealth.setPercentage(this.character.energy);
-            }
+        if (this.character.isColliding(this.endboss)) {
+            // console.log('Collision with Character', this.endboss);
+            this.character.hit();
+            this.statusbarHealth.setPercentage(this.character.energy);
+        }
     }
 
 
     checkJumpOnEnemies() {
         this.level.enemies.forEach((enemy, index) => {
             if (this.character.isColliding(enemy) &&
-            this.character.isAboveGround()) {
+                this.character.isAboveGround()) {
                 this.character.killEnemie(index);
             }
         });
     }
 
 
-    
+
     checkCollisionsThrownBottles() {
         this.throwableObjects.forEach((bottle) => {
             if (this.endboss.isColliding(bottle)) {
@@ -203,7 +203,7 @@ class World {
             }
         });
     }
-    
+
 
     collectingCoins(index) {
         if (this.statusbarCoinsIsEmpty()) {
@@ -211,7 +211,6 @@ class World {
             this.character.collectCoins();
             this.statusbarCoins.setPercentage(this.character.coins);
         }
-
         if (this.statusbarCoinsIsFull()) {
             this.increaseStatusbarHealth();
             this.emptyStatusbarCoins();
