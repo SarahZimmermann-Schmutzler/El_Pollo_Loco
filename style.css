@@ -154,11 +154,11 @@ canvas {
 .btn-container {
     display: flex;
     justify-content: flex-end;
-    width: 760px;
-    margin-bottom: -100px;
-    margin-top: 50px;
+    width: 100%;
+    margin-top: 40px;
     z-index: 2;
 }
+
 .startbtn {
     width: 200px;
     background-color: #FFCB19;
@@ -212,11 +212,11 @@ canvas {
   .btn-container-restart {
     display: flex;
     justify-content: flex-end;
-    width: 760px;
-    margin-bottom: -80px;
-    margin-top: 50px;
+    width: 100%;
+    margin-top: 40px;
     z-index: 2;
 }
+
 .restartbtn {
     width: 200px;
     background-color: #FFCB19;
@@ -233,6 +233,10 @@ canvas {
 /* Media Queries */
 /* Smartphones */
 @media (max-width: 760px) {
+    .game {
+        width: 100%;
+    }
+
     canvas {
         width: 100%;
     }
@@ -251,10 +255,12 @@ canvas {
 
     .btn-container {
         justify-content: center;
+        margin-top: 20px;
     }
 
     .btn-container-restart {
         justify-content: center;
+        margin-top: 20px;
     }
 
     h1 {
@@ -266,7 +272,10 @@ canvas {
     }
 
     .panel {
-        margin-top: -45px;
+        margin-top: -30px;
+        max-width: 480px;
+        padding-left: 50px;
+        box-sizing: border-box;
     }
 
     .touch-control {
@@ -289,6 +298,10 @@ canvas {
 
 /* Smartphones */
 @media (max-height: 480px) {
+    .game {
+        height: 100vh;
+    }
+
     canvas {
         height: 100vh;
     }
@@ -309,12 +322,25 @@ canvas {
         display: none;
     }
 
+    .btn-container {
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    .btn-container-restart {
+        justify-content: center;
+        margin-top: 20px;
+    }
+
     .explanation {
         display: none;
     }
 
     .panel {
-        margin-top: -45px;
+        margin-top: -30px;
+        max-width: 480px;
+        padding-left: 50px;
+        box-sizing: border-box;
     }
 
     .touch-control {
