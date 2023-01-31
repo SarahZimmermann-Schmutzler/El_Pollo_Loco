@@ -3,6 +3,12 @@ class Endboss extends MovableObject {
     width = 250;
     y = 60;
     hit_sound = new Audio('audio/chicken1.mp3');
+    offset = {
+        top: 50,
+        bottom: 30,
+        left: 30,
+        right: 10
+    }
 
     IMAGES_ALERT = [
         'img/4_enemie_boss_chicken/2_alert/G5.png',
@@ -45,20 +51,10 @@ class Endboss extends MovableObject {
         'img/4_enemie_boss_chicken/3_attack/G20.png'
     ];
 
-    IMAGES_SPLASH = [
-        'img/6_salsa_bottle/bottle_rotation/bottle_splash/1_bottle_splash.png',
-        'img/6_salsa_bottle/bottle_rotation/bottle_splash/2_bottle_splash.png',
-        'img/6_salsa_bottle/bottle_rotation/bottle_splash/3_bottle_splash.png',
-        'img/6_salsa_bottle/bottle_rotation/bottle_splash/4_bottle_splash.png',
-        'img/6_salsa_bottle/bottle_rotation/bottle_splash/5_bottle_splash.png',
-        'img/6_salsa_bottle/bottle_rotation/bottle_splash/6_bottle_splash.png',
-    ];
-
-
+    
     constructor() {
         super().loadImage(this.IMAGES_ALERT[0]);
         this.loadImagesForAnimation();
-        this.loadImages(this.IMAGES_SPLASH);
         this.x = 2000;
         this.speed = 0.2;
         this.animate();
@@ -104,7 +100,6 @@ class Endboss extends MovableObject {
     endbossIsHurt() {
         this.hit_sound.play();
         this.playAnimation(this.IMAGES_HURT);
-        this.playAnimation(this.IMAGES_SPLASH);
     }
 
 

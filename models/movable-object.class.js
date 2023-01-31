@@ -7,6 +7,7 @@ class MovableObject extends DrawableObject {
     lastHit = 0;
     coins = 0;
     bottles = 0;
+    endbossIsHit = false;
 
 
     isColliding(mo) {

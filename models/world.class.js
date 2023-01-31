@@ -182,7 +182,6 @@ class World {
     }
 
 
-
     checkCollisionsThrownBottles() {
         this.throwableObjects.forEach((bottle, index) => {
             if (this.endboss.isColliding(bottle)) {
@@ -191,11 +190,12 @@ class World {
                 this.endboss.hitWithBottle();
                 this.statusbarEndboss.setPercentage(this.endboss.energy);
                 this.throwableObjects.splice(index, 1);
+                this.endboss.endbossIsHit = true;
             }
         });
     }
 
-
+    
     checkCollisionsCoins() {
         this.level.coins.forEach((coin, index) => {
             if (this.character.isColliding(coin)) {
