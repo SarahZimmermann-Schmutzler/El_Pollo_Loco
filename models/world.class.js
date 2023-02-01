@@ -190,7 +190,10 @@ class World {
                 this.endboss.hit(35); //schaden 35
                 this.statusbarEndboss.setPercentage(this.endboss.energy);
                 bottle.endbossIsHit = true;
-                this.throwableObjects.splice(index, 1);
+                setTimeout(() => {
+                    this.throwableObjects.splice(index, 1);
+                }, 300);
+                
             }
         });
     }
