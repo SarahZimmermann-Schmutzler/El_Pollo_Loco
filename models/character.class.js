@@ -40,32 +40,45 @@ class Character extends MovableObject {
         'img/2_character_pepe/4_hurt/H-43.png'
     ];
 
+    IMAGES_STANDING = [
+        'img/2_character_pepe/1_idle/idle/I-1.png',
+        'img/2_character_pepe/1_idle/idle/I-2.png',
+        'img/2_character_pepe/1_idle/idle/I-3.png',
+        'img/2_character_pepe/1_idle/idle/I-4.png',
+        'img/2_character_pepe/1_idle/idle/I-5.png',
+        'img/2_character_pepe/1_idle/idle/I-6.png',
+        'img/2_character_pepe/1_idle/idle/I-7.png',
+        'img/2_character_pepe/1_idle/idle/I-8.png',
+        'img/2_character_pepe/1_idle/idle/I-9.png',
+        'img/2_character_pepe/1_idle/idle/I-10.png'
+    ];
+
     offset = {
         top: 120,
         bottom: 30,
         left: 40,
         right: 30
     }
-    walking_sound = new Audio('audio/running1.mp3'); //1.15
+    walking_sound = new Audio('audio/running1.mp3');
     hit_sound = new Audio('audio/pepehit1.mp3');
     dead_sound = new Audio('audio/pepedead.mp3');
 
 
     constructor() {
         super().loadImage('img/2_character_pepe/2_walk/W-21.png');
-        this.loadImages(this.IMAGES_WALKING);
-        // 1.2: müssen hier kein super() mehr vor loadImages Schreiben, schreibt man nur einmal
-        // 1.2: geben hier die Bilder an, die in das JSON-Array ImageCache geladen werden sollen
-        this.loadImages(this.IMAGES_JUMPING); //2.3:gleiches für Jump-Bilder
-        this.loadImages(this.IMAGES_DEAD); //2.13:gleiches für Tot-Bilder
-        this.loadImages(this.IMAGES_HURT); //2.14:gleiches für Verletzt-Bilder
+        this.loadTheImages();
         this.applyGravity();
         this.animate();
     }
-    // 08:constructor wird immer zuerst geladen
-    // 08:laden die loadImage Funktion aus der Superklasse und fügen ihr den passenden Wert hinzu
 
-    
+
+    loadTheImages() {
+        this.loadImages(this.IMAGES_WALKING);
+        this.loadImages(this.IMAGES_JUMPING);
+        this.loadImages(this.IMAGES_DEAD);
+        this.loadImages(this.IMAGES_HURT);
+    }
+
     animate() {
         this.walking_sound.pause(); //1.15: Sound ist angehalten und wird abgespielt, wenn sich Figur bewegt
         setStoppableInterval(() => this.moveCharacter(), 1000 / 60);
@@ -125,16 +138,14 @@ class Character extends MovableObject {
     playCharacter() {
         if (this.isDead()) {
             this.characterIsDead();
-        }
-        else if (this.isHurt()) {
+        } else if (this.isHurt()) {
             this.characterIsHurt();
-        }
-        else if (this.isAboveGround()) {
+        } else if (this.isAboveGround()) {
             this.playAnimation(this.IMAGES_JUMPING);
+        } else if (this.goesRightOrLeft()) {
+            this.playAnimation(this.IMAGES_WALKING);
         } else {
-            if (this.goesRightOrLeft()) {
-                this.playAnimation(this.IMAGES_WALKING);
-            }
+            this.loadImage('img/2_character_pepe/1_idle/idle/I-1.png');
         }
     }
 
