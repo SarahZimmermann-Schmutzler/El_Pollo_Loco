@@ -175,7 +175,8 @@ class World {
     checkJumpOnEnemies() {
         this.level.enemies.forEach((enemy, index) => {
             if (this.character.isColliding(enemy) &&
-                this.character.isAboveGround()) {
+                this.character.isAboveGround() && 
+                this.character.speedY < 0) {
                 this.character.killEnemie(index);
             }
         });
@@ -186,11 +187,10 @@ class World {
         this.throwableObjects.forEach((bottle, index) => {
             if (this.endboss.isColliding(bottle)) {
                 // console.log('Enemie is hit', bottle);
-                this.endboss.hit();
-                this.endboss.hitWithBottle();
+                this.endboss.hit(35); //schaden 35
                 this.statusbarEndboss.setPercentage(this.endboss.energy);
+                bottle.endbossIsHit = true;
                 this.throwableObjects.splice(index, 1);
-                this.endboss.endbossIsHit = true;
             }
         });
     }

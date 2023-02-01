@@ -89,17 +89,9 @@ class MovableObject extends DrawableObject {
     }
 
 
-    hitWithBottle() {
-        this.energy -= 35;
-        // console.log('Collision with Bottle, energy', this.energy);
-        if(this.energy < 0 ) {
-            this.energy = 0;
-        }
-    }
-
-
-    hit() {
-        this.energy -= 2;
+    hit(damage) {
+        this.energy -= damage ? damage : 2;
+        //wird keine damage übergeben, wird standardmäßig zwei abgezogen --> brauche keine eigene Funktion für anderen damage-wert
         // console.log('Collision with Character, energy', this.energy);
         if(this.energy < 0 ) {
             this.energy = 0;
