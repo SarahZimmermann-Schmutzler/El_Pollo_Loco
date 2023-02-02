@@ -18,9 +18,9 @@ class Chicken extends MovableObject {
         super().loadImage('img/3_enemies_chicken/chicken_normal/1_walk/1_w.png');
         this.loadImages(this.IMAGES_WALKING);
         this.x = 300 + Math.random() * 1200;
-        //11: x hat als standardwert 200 (durch Superklasse). sobald gezeichnet, wird auf einen random Wert gesetzt,
+        //x hat als standardwert 200 (durch Superklasse). sobald gezeichnet, wird auf einen random Wert gesetzt,
         //der zwischen 200 und 700 liegt (Math.random() gibt nur werte zwischen 0-1 aus, deswegen * 500)
-        this.speed = 0.15 + Math.random() * 0.25; //1.5: alle Hühnchen unterschiedliche Geschwindigkeit
+        this.speed = 0.15 + Math.random() * 0.25; //alle Hühnchen unterschiedliche Geschwindigkeit
         this.animate();
     }
 

@@ -20,7 +20,7 @@ class MovableObject extends DrawableObject {
 
     playAnimation(images) {
         let i = this.currentImage % images.length;
-        // let i = 0 modulu/Mathematischer Rest 6, wenn es 7 bilder sind, 
+        //let i = 0 modulu/Mathematischer Rest 6, wenn es 7 bilder sind, 
         //wie bei IMAGES_WALKING --> i = 0, 1, 2, 3, 4, 5, 0
         let path = images[i];
         this.img = this.imageCache[path];
@@ -41,16 +41,16 @@ class MovableObject extends DrawableObject {
     applyGravity() {
         setStoppableInterval(() => {
             if (this.isAboveGround() || this.speedY > 0) {
-                // 2.2: damit er nicht ins Bodenlose fällt, sondern bei 140 stehen bleibt
-                // 2.4: damit Funktion auch fürs Springen (speedY z.B.20) ausgeführt wird
+                //damit er nicht ins Bodenlose fällt, sondern bei 140 stehen bleibt
+                //damit Funktion auch fürs Springen (speedY z.B.20) ausgeführt wird
                 this.y -= this.speedY;
-                // 2.2: Geschwindigkeit soll negativ sein, damit Objekt fällt --> positiv heißt hoch
+                //Geschwindigkeit soll negativ sein, damit Objekt fällt --> positiv heißt hoch
                 this.speedY -= this.acceleration;
-                // 2.2: ziehen also Beschleunigung von Geschwindigkeit ab
+                //ziehen also Beschleunigung von Geschwindigkeit ab
             }
         }, 1000 / 25);
     }
-    //2.2: Graviditätsfunktion fürs Fallen
+    //Graviditätsfunktion fürs Fallen
 
 
     isAboveGround() {
@@ -60,12 +60,12 @@ class MovableObject extends DrawableObject {
             return this.y < 130;
         } 
     }
-    // 2.2: soll angeben, ob Objekt auf dem Boden steht
-    // 2.20: Flaschen sollen immer weiter nach unten fallen
+    //soll angeben, ob Objekt auf dem Boden steht
+    //Flaschen sollen immer weiter nach unten fallen
 
 
     jump() {
-        this.speedY = 30; // 2.6: je höher die Zahl, desto höher springt er
+        this.speedY = 30; //je höher die Zahl, desto höher springt er
     }
 
 
@@ -92,29 +92,29 @@ class MovableObject extends DrawableObject {
     hit(damage) {
         this.energy -= damage ? damage : 2;
         //wird keine damage übergeben, wird standardmäßig zwei abgezogen --> brauche keine eigene Funktion für anderen damage-wert
-        // console.log('Collision with Character, energy', this.energy);
+        //console.log('Collision with Character, energy', this.energy);
         if(this.energy < 0 ) {
             this.energy = 0;
         } else {
             this.lastHit = new Date().getTime();
         }
-        // 2.14: speichern Zeitpunkt des letzten Treffers
+        //speichern Zeitpunkt des letzten Treffers
     }
 
 
     isDead() {
         return this.energy == 0;
     }
-    // 2.13: ist Energy 0, dann gibt uns diese Funktion den Wert 0 aus --> returned true
+    //ist Energy 0, dann gibt uns diese Funktion den Wert 0 aus --> returned true
 
 
     isHurt() {
         let timepassed =  new Date().getTime() - this.lastHit;
-        // 2.14: zeit in ms, die vergangen ist zwischen dem letzten Treffer und jetzt
-        timepassed = timepassed / 1000; //2.14: in sekunden
-        return timepassed < 1; // 2.14: wurden innerhalb der letzten Sekunde getroffen --> wird 1 Sek abgespielt
+        //zeit in ms, die vergangen ist zwischen dem letzten Treffer und jetzt
+        timepassed = timepassed / 1000; //in sekunden
+        return timepassed < 1; //wurden innerhalb der letzten Sekunde getroffen --> wird 1 Sek abgespielt
     }
-    // 2.14: returned true, wenn wir innerhalb der letzten Sekunde getroffen wurden
+    //returned true, wenn wir innerhalb der letzten Sekunde getroffen wurden
 
 
     killEnemie(index) {

@@ -5,7 +5,7 @@ class DrawableObject {
     width = 100;
     img;
     imageCache = {};
-    // 1.2: hier hinein werden die Bilder gespeichert, die wir brauchen, um verschiedene Bewegungen darzustellen
+    //hier hinein werden die Bilder gespeichert, die wir brauchen, um verschiedene Bewegungen darzustellen
     currentImage = 0;
     offset = {
         top: 0,
@@ -19,8 +19,8 @@ class DrawableObject {
         this.img = new Image();
         this.img.src = path;
     }
-    // 08: diese Funktion legt den Grundstein für das Laden der Bilder
-    // 08: mit entsprechenden Wert werden sie in der entsprechenden Klasse gefüllt
+    //diese Funktion legt den Grundstein für das Laden der Bilder
+    //mit entsprechenden Wert werden sie in der entsprechenden Klasse gefüllt
 
 
     draw(ctx) {
@@ -28,7 +28,7 @@ class DrawableObject {
     }
 
       /**
-     * 1.2 diese Funktion soll die Bilder in das JSON-Array laden
+     * diese Funktion soll die Bilder in das JSON-Array laden
      * iteriert durch Image paths durch und fügt sie zu Cache hinzu
      * @param {JSON-Array} json  - ['img/image1.png', 'img/image2.png', ...]
      */
@@ -51,6 +51,6 @@ class DrawableObject {
     //         ctx.stroke();
     //     }
     // }
-    // 2.7: Rahmen um Objekte machen, damit man später Kollision erkennen kann
-    // 2.9: mit instanceof die Funktion nur für Character und Chicken anwenden
+    //Rahmen um Objekte machen, damit man später Kollision erkennen kann
+    //mit instanceof die Funktion nur für Character und Chicken anwenden
 }

@@ -1,5 +1,5 @@
 class Character extends MovableObject {
-    world; //1.7: gehört zur Verknüpfung World mit Charakter, damit wir die Variable Keyboard benutzen können
+    world; //gehört zur Verknüpfung World mit Charakter, damit wir die Variable Keyboard benutzen können
     height = 300;
     width = 150;
     speed = 10;
@@ -80,7 +80,7 @@ class Character extends MovableObject {
     }
 
     animate() {
-        this.walking_sound.pause(); //1.15: Sound ist angehalten und wird abgespielt, wenn sich Figur bewegt
+        this.walking_sound.pause(); //Sound ist angehalten und wird abgespielt, wenn sich Figur bewegt
         setStoppableInterval(() => this.moveCharacter(), 1000 / 60);
         setStoppableInterval(() => this.playCharacter(), 50);
     }
@@ -96,13 +96,13 @@ class Character extends MovableObject {
         if (this.goesUpInTheAir()) {
             this.jump();
         }
-        // 2.4: wenn Space drücken wird Initialwert der Fallfunktion auf 20 gesetzt --> springen
-        // 2.5: wenn Space drücke und wenn nicht isAboveGround (also wenn wir nicht auf dem Boden sind (y > 130???))
+        //wenn Space drücken wird Initialwert der Fallfunktion auf 20 gesetzt --> springen
+        //wenn Space drücke und wenn nicht isAboveGround (also wenn wir nicht auf dem Boden sind (y > 130???))
 
         this.world.camera_x = -this.x + 100;
-        // 1.11: wenn sich Chracter bewegt, soll ich Bildausschnitt mitbewegen
-        // camera_x ist in der world.class gespeichert (100px)
-        // 1.14: setzen ihn 100px nach rechts
+        //wenn sich Chracter bewegt, soll ich Bildausschnitt mitbewegen
+        //camera_x ist in der world.class gespeichert (100px)
+        //setzen ihn 100px nach rechts
     }
 
 

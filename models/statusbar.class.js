@@ -8,7 +8,7 @@ class Statusbar extends DrawableObject{
         let path = this.IMAGES[this.resolveImageIndex()];
         this.img = this.imageCache[path];
     }
-    // 2.17: können dann z.B. Funktion aufrufen mit setPercentage(50);
+    //können dann z.B. Funktion aufrufen mit setPercentage(50);
 
     resolveImageIndex() {
         if (this.percentage >= 100) {
@@ -25,5 +25,5 @@ class Statusbar extends DrawableObject{
             return 0;
         }
     }
-    // 2.17: return 5 steht für das 5. Objekt im Array (= 5.Bild, von 0 angefangen zu zählen)
+    //return 5 steht für das 5. Objekt im Array (= 5.Bild, von 0 angefangen zu zählen)
 }

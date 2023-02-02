@@ -2,8 +2,9 @@ let intervalIds = [];
 let canvas;
 let world;
 let keyboard = new Keyboard();
-//1.6: Verknüpfung Objekt mit Variable, damit wir hier auf das Objekt zugreifen können
+//Verknüpfung Objekt mit Variable, damit wir hier auf das Objekt zugreifen können
 welcome_sound = new Audio('audio/intro.mp3', loop = 'loop');
+background_sound = new Audio('audio/background.mp3', loop = 'loop');
 
 function setStoppableInterval(fn, time) {
     let id = setInterval(fn, time);
@@ -51,13 +52,20 @@ function muteSounds() {
     muteSymbolOn();
     muteCharacterSounds();
     muteEnemieSounds();
-    muteCollectablesSounds()
+    muteCollectablesSounds();
+    muteBackgroundSound();
 }
 
 
 function muteSymbolOn() {
     document.getElementById('speaker-game').classList.add('d-none');
     document.getElementById('mute-game').classList.remove('d-none');
+}
+
+
+function muteBackgroundSound() {
+    this.background_sound.muted = true;
+    this.background_sound.pause();
 }
 
 
@@ -92,12 +100,19 @@ function playSounds() {
     playCharacterSounds();
     playEnemieSounds();
     playCollectableSounds();
+    playBackgroundSoundAgain();
 }
 
 
 function speakerSymbolOn() {
     document.getElementById('speaker-game').classList.remove('d-none');
     document.getElementById('mute-game').classList.add('d-none');
+}
+
+
+function playBackgroundSoundAgain() {
+    this.background_sound.muted = false;
+    this.background_sound.play();
 }
 
 
@@ -129,6 +144,13 @@ function startGame() {
     initGame();
     touchPad();
     playSounds();
+    playBackgroundSound();
+}
+
+function playBackgroundSound() {
+    setStoppableInterval(() => {
+        this.background_sound.play();
+    }, 1000 / 60);
 }
 
 
@@ -190,9 +212,9 @@ window.addEventListener('keydown', (event) => {
     }
     // console.log(event.keyCode);
 });
-// 1.6: wollen herausfinden, ob eine Taste gedrückt wird oder nicht
-// wenn ja, spuckt es durch den eventListener ein JSON aus
-// 1.7: Pfeiltasten reagieren nur mit keydown, nicht keypress
+//wollen herausfinden, ob eine Taste gedrückt wird oder nicht
+//wenn ja, spuckt es durch den eventListener ein JSON aus
+//Pfeiltasten reagieren nur mit keydown, nicht keypress
 
 
 window.addEventListener('keyup', (event) => {
@@ -212,8 +234,8 @@ window.addEventListener('keyup', (event) => {
         keyboard.SPACE = false;
     }
 });
-// 1.7: brauchen dasgleiche nochmal für die Situation, dass Taste wieder losgelassen wird
-// schaltet dann um von true auf false
+//brauchen dasgleiche nochmal für die Situation, dass Taste wieder losgelassen wird
+//schaltet dann um von true auf false
 
 
 //EventListener for Touchpad

@@ -17,7 +17,7 @@ class LittleChicken extends MovableObject {
         super().loadImage('img/3_enemies_chicken/chicken_small/1_walk/1_w.png');
         this.loadImages(this.IMAGES_WALKING);
         this.x = 300 + Math.random() * 1200;
-        this.speed = 0.5 + Math.random() * 0.25; //1.5: alle Hühnchen unterschiedliche Geschwindigkeit
+        this.speed = 0.5 + Math.random() * 0.25; //alle Hühnchen unterschiedliche Geschwindigkeit
         this.animate();
     }
 

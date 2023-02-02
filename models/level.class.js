@@ -13,5 +13,5 @@ class Level {
         this.coins = coins;
         this.bottles = bottles;
     }
-    // 1.13: verknüpfen enemies etc. mit den Arrays in der level1.js
+    //verknüpfen enemies etc. mit den Arrays in der level1.js
 }

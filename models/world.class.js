@@ -18,9 +18,9 @@ class World {
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
-        // 09: mit der Variable Context kann man die Canvas bearbeiten
-        this.canvas = canvas; //10: verknüpfen canvas von oben mit der canvas aus dem constructor
-        this.keyboard = keyboard; //1.7: verknüpfen keyboard von oben mit keyboard aus dem constructor
+        //mit der Variable Context kann man die Canvas bearbeiten
+        this.canvas = canvas; //verknüpfen canvas von oben mit der canvas aus dem constructor
+        this.keyboard = keyboard; //verknüpfen keyboard von oben mit keyboard aus dem constructor
         this.draw();
         this.setWorld();
         this.run();
@@ -29,25 +29,25 @@ class World {
 
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-        // 10: canvas muss immer gelöscht werden, bevor wir zeichnen, damit z.B. Character nicht an mehreren Stellen auftaucht
+        //canvas muss immer gelöscht werden, bevor wir zeichnen, damit z.B. Character nicht an mehreren Stellen auftaucht
         this.ctx.translate(this.camera_x, 0);
-        //1.11: schieben Bildausschnitt nach links
-        // (an Bewegung des Characters gekoppelt bzw. automatisch um 120px verschoben, weil dieser standardmäßig x = 120 hat)
+        //schieben Bildausschnitt nach links
+        //(an Bewegung des Characters gekoppelt bzw. automatisch um 120px verschoben, weil dieser standardmäßig x = 120 hat)
         this.addBgElements();
-        // 15: Reihenfolge des Einfügens enscheidet über Reihenfolge der Objekte auf der Canvas
-        // daher Hintergrundobjekte zuerst
+        //Reihenfolge des Einfügens enscheidet über Reihenfolge der Objekte auf der Canvas
+        //daher Hintergrundobjekte zuerst
         this.ctx.translate(-this.camera_x, 0); //2.19: schieben Bildausschnitt zurück
-        // SPACE FOR FIXED OBJECTS
+        //SPACE FOR FIXED OBJECTS
         this.addStatusbars();
-        this.ctx.translate(this.camera_x, 0); //2.19: schieben Bildausschnitt wieder vor
+        this.ctx.translate(this.camera_x, 0); //schieben Bildausschnitt wieder vor
         this.addObjects();
         this.ctx.translate(-this.camera_x, 0);
-        //1.11: schieben Bildausschnitt wieder nach rechts
+        //schieben Bildausschnitt wieder nach rechts
         let self = this;
         requestAnimationFrame(function () {
             self.draw();
         });
-        //10: ruft draw-Funktion so oft auf, wie es Grafikkarte hergibt
+        //ruft draw-Funktion so oft auf, wie es Grafikkarte hergibt
     }
 
     addStatusbars() {
@@ -84,13 +84,13 @@ class World {
 
 
     addToMap(mo) {
-        //1.9: für die Spiegelung
+        //für die Spiegelung
         if (mo.otherDirection) {
             this.flipImage(mo);
         }
         mo.draw(this.ctx);
-        // mo.drawBorder(this.ctx);
-        //1.9: Rückgängimachen Spiegelung für die anderen Elemente
+        //mo.drawBorder(this.ctx);
+        //Rückgängimachen Spiegelung für die anderen Elemente
         if (mo.otherDirection) {
             this.flipImageBack(mo);
         }
@@ -100,28 +100,28 @@ class World {
     setWorld() {
         this.character.world = this;
     }
-    // 1.7: verknüpfen den charakter mit world, damit wir auf die hier definierte Variable keyboard zugreifen können
+    //verknüpfen den charakter mit world, damit wir auf die hier definierte Variable keyboard zugreifen können
 
 
     flipImage(mo) {
-        // schauen, ob otherDirection true ist
+        //schauen, ob otherDirection true ist
         this.ctx.save();
-        // speichern aktuelle Einstellungen des ctx
+        //speichern aktuelle Einstellungen des ctx
         this.ctx.translate(mo.width, 0);
         //schieben Canvas um diese Breite nach rechts, weil wir durch Spiegelung rechts oben anfangen zu zeichnen und das Bild nach links verschoben wird
         this.ctx.scale(-1, 1);
-        // spiegeln Bild um 180 in andere Richtung
+        //spiegeln Bild um 180 in andere Richtung
         mo.x = mo.x * -1;
-        // spiegeln die X-Koordinate des Elements, da es bei Spiegeln das Koordinatensystem umdreht
+        //spiegeln die X-Koordinate des Elements, da es bei Spiegeln das Koordinatensystem umdreht
     }
 
 
     flipImageBack(mo) {
-        // schauen, ob wir oben Kontext verändert haben und wenn ja
+        //schauen, ob wir oben Kontext verändert haben und wenn ja
         mo.x = mo.x * -1;
         // drehen die X-Koordinate wieder um
         this.ctx.restore();
-        // machen Änderungen rückgängig, da anderen Elemente ja vorwärts eingefügt werden sollen
+        //machen Änderungen rückgängig, da anderen Elemente ja vorwärts eingefügt werden sollen
     }
 
 
@@ -157,7 +157,7 @@ class World {
                     this.character.hit();
                 }
                 this.statusbarHealth.setPercentage(this.character.energy);
-                //2.19: Prozentzahl die Statusbar einnehmen soll (Bild dass gezeigt werden soll) an Energiestand gekoppelt
+                //Prozentzahl die Statusbar einnehmen soll (Bild dass gezeigt werden soll) an Energiestand gekoppelt
             }
         });
     }
