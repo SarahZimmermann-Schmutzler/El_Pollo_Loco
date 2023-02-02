@@ -16,6 +16,22 @@ body {
     margin: 0;
 }
 
+.rotate-screen {
+    width: 100%;
+    height: 100vh;
+    background-image: url('img/5_background/layers/air.png');
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+}
+
+.rotate-text {
+    font-family: 'Rye';
+    font-size: 46px;
+    text-align: center;
+}
+
 .game {
     display: flex;
     flex-direction: column;
@@ -233,6 +249,10 @@ canvas {
 /* Media Queries */
 /* Smartphones */
 @media (max-width: 760px) {
+    /* .rotate-screen {
+        display: flex;
+    } */
+
     .game {
         width: 100%;
     }
@@ -276,6 +296,7 @@ canvas {
         max-width: 480px;
         padding-left: 50px;
         box-sizing: border-box;
+        /* display: none; */
     }
 
     .touch-control {
