@@ -38,21 +38,21 @@
         <span class="rotate-text">please rotate device</span>
     </div>
 
-    <div id="fullscreen" class="game">
+    <div class="game" id="fullscreen">
         <h1>El Pollo Loco</h1>
-        
+
         <div class="startscreen" id="startscreen">
             <div class="btn-container" id="btn-container">
                 <button class="startbtn" onclick="startGame()" id="startbtn">Start</button>
             </div>
         </div>
-        
+
         <div class="gameover d-none" id="gameover">
             <div class="btn-container-restart d-none" id="btn-container-restart">
                 <button class="restartbtn d-none" onclick="startGame()" id="restartbtn">Restart</button>
             </div>
         </div>
-        
+
         <canvas width="720px" height="480px" id="canvas" class="d-none"></canvas>
 
         <div class="panel">
@@ -61,17 +61,17 @@
                     <img src="img/10_other/left.png" id="leftbtn">
                     <span>Walk Left</span>
                 </div>
-    
+
                 <div class="keys">
                     <img src="img/10_other/right.png" id="rightbtn">
                     <span>Walk Right</span>
                 </div>
-    
+
                 <div class="keys">
                     <img src="img/10_other/up.png" id="jumpbtn">
                     <span>Jump</span>
                 </div>
-    
+
                 <div class="keys">
                     <img src="img/10_other/space.png" id="throwbtn">
                     <span>Throw Bottle</span>
@@ -82,13 +82,11 @@
                 <img src="img/10_other/speaker.png" onclick="stopWelcomeMusic()" id="speaker" class="d-none speaker">
                 <img src="img/10_other/mute.png" onclick="playSounds()" id="mute-game" class="speaker d-none">
                 <img src="img/10_other/speaker.png" onclick="muteSounds()" id="speaker-game" class="d-none speaker">
-    
+
                 <img src="img/10_other/full.png" onclick="fullscreen()" id="fullscreen-icon" class="">
                 <img src="img/10_other/nofull.png" onclick="closeFullscreen()" id="nofullscreen-icon" class="d-none">
             </div>
         </div>
-
-        
 
         <div class="explanation">
             <div class="keys">

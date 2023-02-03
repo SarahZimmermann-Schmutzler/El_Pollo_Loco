@@ -190,6 +190,7 @@ function initGame() {
 
 function stopGame() {
     intervalIds.forEach(clearInterval);
+    muteBackgroundSound();
 }
 
 
