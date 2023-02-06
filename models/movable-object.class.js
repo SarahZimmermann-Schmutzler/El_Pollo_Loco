@@ -82,6 +82,7 @@ class MovableObject extends DrawableObject {
     collectCoins() {
         this.coins += 20;
         this.world.coin_sound.play();
+        this.world.coin_sound.volume = 0.5;
         // console.log('Collision with Character, coins', this.coins);
         if(this.coins > 100 ) {
             this.coins = 100;

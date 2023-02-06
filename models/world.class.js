@@ -128,7 +128,7 @@ class World {
     run() {
         setStoppableInterval(() => {
             this.checkThrowObjects();
-        }, 100);
+        }, 500);
 
         setStoppableInterval(() => {
             this.checkCollisions();

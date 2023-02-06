@@ -62,6 +62,7 @@ class Character extends MovableObject {
     walking_sound = new Audio('audio/running1.mp3');
     hit_sound = new Audio('audio/pepehit1.mp3');
     dead_sound = new Audio('audio/pepedead.mp3');
+    
 
 
     constructor() {
@@ -81,6 +82,7 @@ class Character extends MovableObject {
 
     animate() {
         this.walking_sound.pause(); //Sound ist angehalten und wird abgespielt, wenn sich Figur bewegt
+        
         setStoppableInterval(() => this.moveCharacter(), 1000 / 60);
         setStoppableInterval(() => this.playCharacter(), 50);
     }
@@ -168,6 +170,7 @@ class Character extends MovableObject {
     characterIsHurt() {
         this.playAnimation(this.IMAGES_HURT);
         this.hit_sound.play();
+        this.hit_sound.volume = 0.5;
     }
 
 

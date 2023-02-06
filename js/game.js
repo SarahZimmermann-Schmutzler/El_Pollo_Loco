@@ -5,6 +5,8 @@ let keyboard = new Keyboard();
 //Verknüpfung Objekt mit Variable, damit wir hier auf das Objekt zugreifen können
 welcome_sound = new Audio('audio/intro.mp3', loop = 'loop');
 background_sound = new Audio('audio/background.mp3', loop = 'loop');
+welcome_sound.volume = 0.5; 
+background_sound.volume = 0.5;
 
 function setStoppableInterval(fn, time) {
     let id = setInterval(fn, time);

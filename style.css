@@ -320,7 +320,7 @@ canvas {
 }
 
 /* Smartphones */
-@media (max-width: 480px) {
+@media (max-width: 490px) {
     .panel {
         padding-left: 20px;
         justify-content: center;
